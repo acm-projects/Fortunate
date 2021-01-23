@@ -123,8 +123,9 @@ For icons:
   **Additional Resources**
 
 
-  ***The first 3 of these are incredibly helpful youtube videos to further explain topics. 
+  ***The first 4 of these are incredibly helpful youtube videos to further explain topics. Especially The javascript videos as Firebase makes extensive use of promises and asynchronous functions in their services. 
   - [Javascript: exporting modules](https://www.youtube.com/watch?v=YGHnvrDGmJw&ab_channel=DavidConnelly)
   - [Javascript: Asynchronous/Await/Promises](https://www.youtube.com/watch?v=V_Kr9OSfDeU&list=LL&index=2&ab_channel=FrancisMasangcayFrancisMasangcay)
   - [Firebase functions: Chaining multiple database queries](https://firebase.google.com/docs/functions/video-series)
+  - [GitHub Crash Course by Brad Traversy](https://www.youtube.com/watch?v=SWYqp7iY_Tc&feature=youtu.be&ab_channel=TraversyMedia)
   - [Firestore reference documentation](https://googleapis.dev/nodejs/firestore/latest/)
