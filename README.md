@@ -8,7 +8,6 @@ Learn the highs and lows of market trading in this interactive web game that uti
 2. Working virtual market
 3. Definitions/dictionary
 4. Intro tutorial to cover:
-    - Long term vs. Short term trading
     - Beating the Market and betas
     - Metrics (P/E ratio, Volume, Market Cap etc)
     - Associated fees
@@ -44,7 +43,7 @@ Learn the highs and lows of market trading in this interactive web game that uti
     - last 8hrs is front end and react.js stuff
   - Comprehensive React Youtube Tutorial [here](https://www.youtube.com/watch?v=15YB__vYpuA&ab_channel=codedamn)
   - React docs [here](https://reactjs.org/docs/getting-started.html)
-  - React and redux tutorial 1.5 hrs [here](https://www.youtube.com/watch?v=poQXNp9ItL4&ab_channel=ProgrammingwithMosh)
+ 
   - React app/web app deployment [here](https://rapidapi.com/blog/how-to-deploy-a-react-app/)
 
 For icons:
@@ -62,7 +61,7 @@ For icons:
   - Alternative to chart.js is [Material UI](https://demos.creative-tim.com/material-dashboard-react/?_ga=2.110349637.1305139177.1610393674-449867271.1610393674#/admin/dashboard)
 - Redux.js for state management
 - Unirest for HTTP request and API's
-- material ui for React components (useful for front end) [link here](https://material-ui.com/)
+- Material ui React components (useful for front end) [link here](https://material-ui.com/)
 
 ---
 
@@ -76,6 +75,8 @@ For icons:
 - Unirest
   - A HTTP request library built for Node.js. We will be using unirest to connect with any needed API's.
   - Unirest installation and use is covered [here in a github repo](https://github.com/Kong/unirest-nodejs) and also [here in rapidAPI's official documentation](https://docs.rapidapi.com/docs/nodejs-unirest). Installation is done via npm
+- [Axios](https://www.npmjs.com/package/axios#features) a javascript library to make https requests use is for the front end react.js app to communicate with back end's api served through firebase functions
+- [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi/related?hl=en) : an optional chrome extension that helps a ton with debugging a react project
 
   ---
   **Additional Resources**
@@ -87,6 +88,8 @@ For icons:
   - [Firebase functions: Chaining multiple database queries](https://firebase.google.com/docs/functions/video-series)
   - [GitHub Crash Course by Brad Traversy](https://www.youtube.com/watch?v=SWYqp7iY_Tc&feature=youtu.be&ab_channel=TraversyMedia)
   - [Firestore reference documentation](https://googleapis.dev/nodejs/firestore/latest/)
+  - [Redux Documentation/Tutorials](https://react-redux.js.org/introduction/quick-start)
+  - [Redux Guide](https://daveceddia.com/what-does-redux-do/)
 
 ---
 
