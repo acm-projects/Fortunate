@@ -7,18 +7,25 @@ Learn the highs and lows of market trading in this interactive web game that uti
 1. Sign in/user athentication
 2. Working virtual market
 3. Definitions/dictionary
-4. Intro tutorial to cover:
+4. Intro tutorial:
+    -  Should have tooltips and seperate page articles     
+5. Portfolio overview 
+6. Stock lookup
+6. Transaction history
+
+- Tutorial Topics:
     - Beating the Market and betas
     - Metrics (P/E ratio, Volume, Market Cap etc)
     - Associated fees
-5. Portfolio overview 
-6. Transaction history
-
 ---
 
 **Stretch Goals:**
 1. Stock look up
-2. Support for bonds
+2. Leader board(s)
+2. Demo mode (no account needed to explore app)
+2. Different Difficulty/investor knowledge levels
+2. Optimized for mobile devices
+3. Support for bonds
 3. Tutorials for bonds
 4. Support for Mutual/Index Funds
 5. Tutorials for funds
