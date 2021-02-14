@@ -6,7 +6,7 @@ Learn the highs and lows of market trading in this interactive web game that uti
 **MVP:**
 1. Sign in/user athentication
 2. Working virtual market
-3. Definitions/Thesaraus
+3. Definitions/Thesaurus
 4. Intro tutorial:
     -  Should have tooltips and seperate page articles     
 5. Portfolio overview 
