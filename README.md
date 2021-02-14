@@ -6,7 +6,7 @@ Learn the highs and lows of market trading in this interactive web game that uti
 **MVP:**
 1. Sign in/user athentication
 2. Working virtual market
-3. Definitions/dictionary
+3. Definitions/Thesaraus
 4. Intro tutorial:
     -  Should have tooltips and seperate page articles     
 5. Portfolio overview 
@@ -20,18 +20,17 @@ Learn the highs and lows of market trading in this interactive web game that uti
 ---
 
 **Stretch Goals:**
-1. Stock look up
-2. Leader board(s)
+1. Leader board(s)
 2. Demo mode (no account needed to explore app)
-2. Different Difficulty/investor knowledge levels
-2. Optimized for mobile devices
-3. Support for bonds
-3. Tutorials for bonds
-4. Support for Mutual/Index Funds
-5. Tutorials for funds
-6. Support for shorting
-7. Tutorials for shorting
-8. Tutorials for candle stick patterns
+3. Different Difficulty/investor knowledge levels
+4. Optimized for mobile devices
+5. Support for bonds
+6. Tutorials for bonds
+7. Support for Mutual/Index Funds
+8. Tutorials for funds
+9. Support for shorting
+10. Tutorials for shorting
+11. Tutorials for candle stick patterns
 
 
 ---
