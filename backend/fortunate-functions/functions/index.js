@@ -12,6 +12,7 @@ const config = JSON.parse(fs.readFileSync("config.json"));
 
 // Init app
 const firebase = require("firebase");
+const { object } = require("firebase-functions/lib/providers/storage");
 firebase.initializeApp(config)
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -32,6 +33,25 @@ app.post("/signup", (req, res) => {
         username: req.body.username,
         password: req.body.password,
         confirm_password: req.body.confirm_password
+    }
+
+    let email_valid = /.+@.+\..+/;
+    let errors = {};
+    if(!newUser.email.match(email_valid)) {
+        errors.email = 'Invalid email provided';
+    }
+
+    if(newUser.password.trim().length === 0) {
+        errors.password = 'Must not be empty';
+    } else if (newUser.password !== newUser.confirm_password) {
+        errors.confirm_password = 'Passwords do not match';
+    }
+
+    if(newUser.username.trim().length === 0) {
+        errors.username = 'Must not be empty';
+    }
+    if(Object.keys(errors).length !== 0) {
+        return res.status(400).json(errors);
     }
 
     // Creating Database Entry for User
@@ -61,15 +81,6 @@ app.post("/signup", (req, res) => {
         console.error(error);
         return res.status(500).json({error: error.code}); 
     })
-    /*
-    firebase.auth().createUserWithEmailAndPassword(newUser.email, newUser.password).then((data) => {
-        return res.status(201).json({message: `User ${data.user.uid} signed up successfully`});
-    }).catch((error) => {
-        console.error(error);
-        return res.status(500).json({error: error.code});
-    });
-    */
-    // TODO: Validate Signup
 });
 
 exports.api = functions.https.onRequest(app);
