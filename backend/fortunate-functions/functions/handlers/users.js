@@ -3,11 +3,7 @@ const config = require("../util/config");
 const firebase = require("firebase");
 firebase.initializeApp(config);
 
-<<<<<<< HEAD
-const { validateLoginData } = require("../util/validators");
-=======
 const { validateLoginData, validateSignUpData } = require("../util/validators");
->>>>>>> sign_up
 
 // Handles log-in requests
 exports.login = (request, response) => {
@@ -39,8 +35,6 @@ exports.login = (request, response) => {
 			return response.status(500).json({ error: err.code }); // Error 500: Server Error - Internal Server Error
 		});
 };
-<<<<<<< HEAD
-=======
 
 exports.signup = (req, res) => {
 	const db = require('../util/admin').admin.firestore();
@@ -81,4 +75,3 @@ exports.signup = (req, res) => {
         return res.status(500).json({error: error.code}); 
     })
 }
->>>>>>> sign_up

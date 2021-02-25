@@ -15,21 +15,14 @@ const isEmpty = str => {
 exports.validateLoginData = user => {
 	let errors = {};
 
-<<<<<<< HEAD
-	if (isEmpty(user.email)) errors.email = "Feild must not be empty";
-	if (isEmpty(user.password)) errors.password = "Feild must not be empty";
-=======
 	if (isEmpty(user.email)) errors.email = "Field must not be empty";
 	if (isEmpty(user.password)) errors.password = "Field must not be empty";
->>>>>>> sign_up
 
 	return {
 		valid: Object.keys(errors).length === 0,
 		errors,
 	};
 };
-<<<<<<< HEAD
-=======
 
 exports.validateSignUpData = user => {
 	let errors = {};
@@ -49,4 +42,3 @@ exports.validateSignUpData = user => {
 		errors
 	};
 };
->>>>>>> sign_up
