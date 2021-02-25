@@ -3,7 +3,7 @@ const config = require("../util/config");
 const firebase = require("firebase");
 firebase.initializeApp(config);
 
-const { validateLoginData } = require("../util/validators");
+const { validateLoginData, validateSignUpData } = require("../util/validators");
 
 // Handles log-in requests
 exports.login = (request, response) => {
@@ -44,26 +44,9 @@ exports.signup = (req, res) => {
         password: req.body.password,
         confirm_password: req.body.confirm_password
     }
-
-    let email_valid = /.+@.+\..+/;
-    let errors = {};
-    if(!newUser.email.match(email_valid)) {
-        errors.email = 'Invalid email provided';
-    }
-
-    if(newUser.password.trim().length === 0) {
-        errors.password = 'Must not be empty';
-    } else if (newUser.password !== newUser.confirm_password) {
-        errors.confirm_password = 'Passwords do not match';
-    }
-
-    if(newUser.username.trim().length === 0) {
-        errors.username = 'Must not be empty';
-    }
-    if(Object.keys(errors).length !== 0) {
-        return res.status(400).json(errors);
-    }
-
+    const { valid, errors } = validateSignUpData(newUser);
+	if (!valid) return res.status(400).json(errors); // Error 400: Client Error - Bad Request
+  
     // Creating Database Entry for User
     let token;
     let userID;
