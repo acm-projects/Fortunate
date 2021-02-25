@@ -11,8 +11,8 @@ const Header = () => {
             <Button text ='Virtual Market'/>
             <Button text ='Courses'/>
             <Button text ='Contact'/>
-            <TopButton width = '200px' text ='Sign Up'/>
-            <TopButton width = '200px' text ='Login'/>
+            <TopButton width = '250px' text ='Sign Up'/>
+            <TopButton width = '250px' text ='Login'/>
         </header>
     )
 }
