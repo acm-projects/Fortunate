@@ -5,6 +5,7 @@ firebase.initializeApp(config);
 
 const { validateLoginData, validateSignUpData } = require("../util/validators");
 
+//const FBAuth = require('../util/fbauth');
 // Handles log-in requests
 exports.login = (request, response) => {
 	const user = {
@@ -74,4 +75,16 @@ exports.signup = (req, res) => {
         console.error(error);
         return res.status(500).json({error: error.code}); 
     })
+}
+
+exports.trade = (req,res) => {
+    
+
+    const trade = {
+        symbol : req.body.ticker,
+        quantity : req.body.quantity,
+        type : req.body.type
+    };
+    console.log(trade);
+    res.status(200).json({test:'test'})
 }
