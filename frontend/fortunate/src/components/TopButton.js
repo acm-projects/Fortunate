@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
 
-const TopButton = ({text, width, onClick}) => {
+const TopButton = ({color, text, width, onClick}) => {
 
     return (
-            <topbutton style={{width: width}} className ='topbutton'>{text}</topbutton>
+            <topbutton style={{width: width, color: color}} className ='topbutton'>{text}</topbutton>
 
     )
 
@@ -11,7 +11,6 @@ const TopButton = ({text, width, onClick}) => {
 }
 
 TopButton.defaultProps = {
-    color: '#c2bc91'
 }
 
 TopButton.propTypes = {
