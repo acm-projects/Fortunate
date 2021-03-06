@@ -83,13 +83,12 @@ exports.getAuthUser = (req, res) => {
     db.doc(`users/${req.user.username}`).get().then((doc) => {
         if(doc.exists) {
             userData.credentials = doc.data();
-            return db.collection('userdata').where('username', '==', req.user.username).get();
+            //return db.collection('userdata').where('username', '==', req.user.username).get();
+            return db.collection('userdata').doc(req.user.username).get();
         }
     }).then((data) => {
-        userData.portfolio = [];
-        data.forEach((doc) => {
-            userData.portfolio.push(doc.data());
-        });
+        console.log("Data:\n" + data.data());
+        userData.portfolio = data.data().portfolio;
         return res.json(userData);
     }).catch((error) => {
         console.error(error);
