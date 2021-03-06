@@ -1,3 +1,4 @@
 node_modules/
 util/config.js
 config.json
+dbschema.js
