@@ -1,3 +1,4 @@
+/*
 import React, { Component } from 'react';
 import Link from 'react-router-dom/Link';
 // material ui stuff
@@ -10,7 +11,7 @@ class Navbar extends Component {
     return (
       <AppBar>
         <Toolbar className="nav-container">
-          // can add home here
+          <Button color="inherit" component={Link} to="/">Home</Button>
           <Button color="inherit" component={Link} to="/login">Login</Button>
           <Button color="inherit" component={Link} to="/signup">Signup</Button>
         </Toolbar>
@@ -20,3 +21,5 @@ class Navbar extends Component {
 }
 
 export default Navbar;
+
+*/

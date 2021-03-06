@@ -11,7 +11,7 @@ import Navbar from './components/Navbar';
   // can add home here
 import login from './pages/login';
 import signup from './pages/signup';
-
+/*
 const theme = createMuiTheme({
   palette: {
    primary: {
@@ -23,13 +23,13 @@ const theme = createMuiTheme({
      contrastText: '#fff'
    }
  },
-})
+})*/
 
 class App extends Component {
   render() {
 //function App() {
     return (
-      <MuiThemeProvider theme={theme}>
+    //  <MuiThemeProvider theme={theme}>
       <div className="App">
         <Router>
 // navbar doesn't change just the content of page changes so not under switch
@@ -43,7 +43,7 @@ class App extends Component {
           </div>
         </Router>
       </div>
-      </MuiThemeProvider>
+    //  </MuiThemeProvider>
     );
   }
 }

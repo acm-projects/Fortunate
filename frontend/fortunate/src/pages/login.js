@@ -1,6 +1,14 @@
+
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
+
+// import Header from './components/Header'
+import React, { Component } from 'react';
+import withStyles from '@material-ui/core/styles/withStyles';
+import PropTypes from 'prop-types';
+import AppIcon from '../images/fortunatelogo.png';
+
 // import AppIcon to get logo
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -17,6 +25,11 @@ const styles = {
     textAlign: 'center'
   },
   // can add a logo thing
+
+  image: {
+    margin: '20px auto 20px auto'
+  },
+
   pageTitle: {
     margin: '10px auto 10px auto'
   },
@@ -60,6 +73,10 @@ class login extends Component {
     .post('/login', userData)
     .then((res) => { //reached here so successful
       console.log(res.data);
+
+
+      localStorage.setItem('FBIdToken', 'Bearer ${res.data.token}');
+
       this.setState({
         loading: false
       });
@@ -84,17 +101,28 @@ class login extends Component {
       <Grid container className={classes.form}>
         <Grid item sm/>
         <Grid item sm>
+
+        <img src={AppIcon} alt="coin" width="200" height="200"/>
+
           <Typography variant="h3" className={classes.pagetitle}>
           Login
           </Typography>
           <form noValidate onsubmit={this.handleSubmit}>
 
+
           <TextField id="email" name="email" type="email" label="Email" className={classes.textField}
+
+          <TextField inputProps={{style: {color: 'gold' }}} InputLabelProps={{style: {color: '#fff' },}} id="email" name="email" type="email" label="Email" className={classes.textField}
+
           helperText={errors.email}
           error={errors.email ? true : false}
           value={this.state.email} onChange={this.handleChange} fullWidth/>
 
+
           <TextField id="password" name="password" type="password" label="Password" className={classes.textField}
+
+          <TextField inputProps={{style: {color: 'gold' }}} InputLabelProps={{style: {color: '#fff' },}} id="password" name="password" type="password" label="Password" className={classes.textField}
+
           helperText={errors.password} error={errors.password ? true : false}
           value={this.state.password} onChange={this.handleChange} fullWidth/>
 
@@ -108,7 +136,11 @@ class login extends Component {
             {loading && <CircularProgress size={30} className={classes.progress}/>}
           </Button>
 <br />
+
           <small>Don't have account? Sign-up <Link to="/signup">here</Link></small>
+
+          <small>Don't have account? Sign-up <Link to="/signup" style={{color: '#FFF'}}>here</Link></small>
+
           </form>
         </Grid>
         <Grid item sm/>
