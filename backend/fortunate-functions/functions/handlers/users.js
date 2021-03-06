@@ -77,65 +77,32 @@ exports.signup = (req, res) => {
     })
 }
 
+exports.getAuthUser = (req, res) => {
+    let userData = {};
+    const db = require('../util/admin').admin.firestore();
+    db.doc(`users/${req.user.username}`).get().then((doc) => {
+        if(doc.exists) {
+            userData.credentials = doc.data();
+            return db.collection('userdata').where('username', '==', req.user.username).get();
+        }
+    }).then((data) => {
+        userData.portfolio = [];
+        data.forEach((doc) => {
+            userData.portfolio.push(doc.data());
+        });
+        return res.json(userData);
+    }).catch((error) => {
+        console.error(error);
+        return res.status(500).json({error: error.code});
+    });
+};
+
+
 const yapi = require('../util/yahooapi');
 
 exports.trade = (req,res) => {
-
-    const trade = {
-        symbol : req.body.ticker,
-        quantity : req.body.quantity,
-        type : req.body.type
-    };
-    console.log(trade);
-
-    const testdata = {
-        quoteSourceName: 'Nasdaq Real Time Price',
-        regularMarketOpen: { raw: 687.99, fmt: '687.99' },
-        averageDailyVolume3Month: { raw: 39798333, fmt: '39.8M', longFmt: '39,798,333' },
-        exchange: 'NMS',
-        regularMarketTime: 1614800586,
-        volume24Hr: {},
-        regularMarketDayHigh: { raw: 700.54, fmt: '700.54' },
-        shortName: 'Tesla, Inc.',
-        averageDailyVolume10Day: { raw: 38758014, fmt: '38.76M', longFmt: '38,758,014' },
-        longName: 'Tesla, Inc.',
-        regularMarketChange: { raw: -16.259888, fmt: '-16.26' },
-        currencySymbol: '$',
-        regularMarketPreviousClose: { raw: 686.44, fmt: '686.44' },
-        preMarketPrice: { raw: 687.37, fmt: '687.37' },
-        preMarketTime: 1614781799,
-        exchangeDataDelayedBy: 0,
-        toCurrency: null,
-        postMarketChange: {},
-        postMarketPrice: {},
-        exchangeName: 'NasdaqGS',
-        preMarketChange: { raw: 0.929993, fmt: '0.93' },
-        circulatingSupply: {},
-        regularMarketDayLow: { raw: 663.68, fmt: '663.68' },
-        priceHint: { raw: 2, fmt: '2', longFmt: '2' },
-        currency: 'USD',
-        regularMarketPrice: { raw: 670.1801, fmt: '670.18' },
-        regularMarketVolume: { raw: 21527389, fmt: '21.53M', longFmt: '21,527,389.00' },
-        lastMarket: null,
-        regularMarketSource: 'FREE_REALTIME',
-        openInterest: {},
-        marketState: 'REGULAR',
-        underlyingSymbol: null,
-        marketCap: { raw: 643275096064, fmt: '643.28B', longFmt: '643,275,096,064.00' },
-        quoteType: 'EQUITY',
-        preMarketChangePercent: { raw: 0.00135481, fmt: '0.14%' },
-        volumeAllCurrencies: {},
-        strikePrice: {},
-        symbol: 'TSLA',
-        preMarketSource: 'FREE_REALTIME',
-        maxAge: 1,
-        fromCurrency: null,
-        regularMarketChangePercent: { raw: -0.023687268, fmt: '-2.37%' }
-      }
-
-    // var cost = trade.quantity * yapi.getQuote(trade.symbol).regularMarketPrice.raw;
-    var cost = trade.quantity * testdata.regularMarketPrice.raw;
-    console.log (cost);
-    const db = require('../util/admin').admin.firestore();
-    res.status(200).json({test:'test'})
+    // TODO: VALIDATE TRADE TIME
+    // TODO: GET STOCK INFORMATION FROM DATABASE
+    // TODO: VALIDATE ORDER
+    // TODO: PROCESS ORDER
 }
