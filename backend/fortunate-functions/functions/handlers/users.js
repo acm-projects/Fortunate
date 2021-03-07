@@ -96,9 +96,6 @@ exports.getAuthUser = (req, res) => {
     });
 };
 
-
-const yapi = require('../util/yahooapi');
-
 exports.trade = (req,res) => {
     // TODO: VALIDATE TRADE TIME
     // TODO: GET STOCK INFORMATION FROM DATABASE
