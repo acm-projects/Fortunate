@@ -9,7 +9,7 @@ const {FBAuth} = require('./util/fbauth');
 // Users Routes
 app.post("/login", login);
 app.post("/signup", signup);
-app.post("/trade",FBAuth, trade);
+app.post("/trade", FBAuth, trade);
 
 app.get("/user", FBAuth, getAuthUser);
 

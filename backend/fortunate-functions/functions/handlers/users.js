@@ -4,6 +4,7 @@ const firebase = require("firebase");
 firebase.initializeApp(config);
 
 const { validateLoginData, validateSignUpData } = require("../util/validators");
+const { user } = require("firebase-functions/lib/providers/auth");
 
 // const FBAuth = require('../util/fbauth');
 // Handles log-in requests
@@ -80,6 +81,8 @@ exports.signup = (req, res) => {
 exports.getAuthUser = (req, res) => {
     let userData = {};
     const db = require('../util/admin').admin.firestore();
+
+    // Make sure user exists
     db.doc(`users/${req.user.username}`).get().then((doc) => {
         if(doc.exists) {
             userData.credentials = doc.data();
@@ -87,6 +90,8 @@ exports.getAuthUser = (req, res) => {
             return db.collection('userdata').doc(req.user.username).get();
         }
     }).then((data) => {
+
+        // Return user data
         console.log("Data:\n" + data.data());
         userData.portfolio = data.data().portfolio;
         return res.json(userData);
@@ -96,9 +101,67 @@ exports.getAuthUser = (req, res) => {
     });
 };
 
+const getStockPrice = ticker => {
+    // TODO: GET STOCK PRICE FROM DATABASE
+    // TODO: HANDLE INVALID INPUTS
+
+    // THIS IS A SAMPLE VALUE
+    // TODO: RETURN STOCK PRICE
+    return 10;
+}
+
 exports.trade = (req,res) => {
+
+    /*
+     * req format: 
+     * {
+     *      type = "buy/sell"
+     *      symbol = "TICKER",
+     *      quantity = 123     
+     * }
+     */
+
+    const db = require('../util/admin').admin.firestore();
     // TODO: VALIDATE TRADE TIME
     // TODO: GET STOCK INFORMATION FROM DATABASE
+    var price = getStockPrice("TICKER");
+    let userport = {};
+    let userref;
+
+    // Determine which user is sending the request
+    db.doc(`users/${req.user.username}`).get().then((doc) => {
+        if(doc.exists) {
+            userref = db.collection('userdata').doc(req.user.username);
+            return userref.get();
+        }
+    }).then((data) => {
+
+        // Get the users portfolio information
+        userport = data.data().portfolio;
+
+        // Handle different request type: BUY or SELL
+        if(req.body.type === "buy") {
+
+            // Make sure the user has enough money to purchase
+            if(price * req.body.quantity > userport.cash) {
+                return res.status(400).json({error: "Not Enough Cash"});
+            }
+
+            // If they have enough money, buy the stock (update database)
+            var path = 'portfolio.securities.' + req.body.symbol + '.' + price;
+            var updatehelper = {
+                'portfolio.cash' : userport.cash - price * req.body.quantity,
+                [path] : req.body.quantity
+            };
+            userref.update(updatehelper);
+        }
+        
+        // Placeholder return
+        return res.json({Success : "Success"});
+    }).catch((error) => {
+        console.error(error);
+        return res.status(500).json({error: error.code});
+    });
     // TODO: VALIDATE ORDER
     // TODO: PROCESS ORDER
 }
