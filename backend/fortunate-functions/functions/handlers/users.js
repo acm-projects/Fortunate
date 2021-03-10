@@ -107,7 +107,7 @@ const getStockPrice = ticker => {
 
     // THIS IS A SAMPLE VALUE
     // TODO: RETURN STOCK PRICE
-    return 0;
+    return 1000;
 }
 
 exports.trade = (req,res) => {
@@ -139,6 +139,10 @@ exports.trade = (req,res) => {
         // Get the users portfolio information
         userport = data.data().portfolio;
 
+        // Variables for where the location of the data will be
+        var path = 'portfolio.securities.' + req.body.symbol;
+        var quantity = req.body.quantity;
+         
         // Handle different request type: BUY or SELL
         if(req.body.type === "buy") {
 
@@ -147,15 +151,10 @@ exports.trade = (req,res) => {
                 return res.status(400).json({error: "Not Enough Cash"});
             }
             // If they have enough money, buy the stock (update database)
-            var path = 'portfolio.securities.' + req.body.symbol + '.' + price;
-
-            var quantity = req.body.quantity;
-            // console.log("Quantity: " + quantity);
-
-            // If the user already owns shares at the same price, update the shares
-            if(price in userport.securities[req.body.symbol]) {
+            // If the user already owns shares, update the shares
+            if(req.body.symbol in userport.securities) {
                 //console.log(userport.securities[req.body.symbol][price]);
-                quantity += userport.securities[req.body.symbol][price];
+                quantity += userport.securities[req.body.symbol];
             }
 
             var updatehelper = {
@@ -165,6 +164,25 @@ exports.trade = (req,res) => {
             userref.update(updatehelper);
         } else if(req.body.type === "sell") {
             
+            // Verify that the user actually owns shares
+            if(!(req.body.symbol in userport.securities)) {
+                return res.status(400).json({error: "No shares owned"});
+            }
+            // If they have enough shares, sell the stock (update database)
+            if(req.body.quantity > userport.securities[req.body.symbol]) {
+                return res.status(400).json({error: "Not Enough Shares"});
+            }
+            quantity = userport.securities[req.body.symbol] - req.body.quantity;
+
+            if(quantity === 0) {
+                quantity = require('../util/admin').admin.firestore.FieldValue.delete();
+            }
+
+            var updatehelper = {
+                'portfolio.cash' : userport.cash + price * req.body.quantity,
+                [path] : quantity
+            };
+            userref.update(updatehelper);
         } else {
             return res.status(400).json({error: "invalid trade type"});
         }
