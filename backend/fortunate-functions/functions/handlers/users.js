@@ -107,7 +107,7 @@ const getStockPrice = ticker => {
 
     // THIS IS A SAMPLE VALUE
     // TODO: RETURN STOCK PRICE
-    return 10;
+    return 0;
 }
 
 exports.trade = (req,res) => {
@@ -146,14 +146,27 @@ exports.trade = (req,res) => {
             if(price * req.body.quantity > userport.cash) {
                 return res.status(400).json({error: "Not Enough Cash"});
             }
-
             // If they have enough money, buy the stock (update database)
             var path = 'portfolio.securities.' + req.body.symbol + '.' + price;
+
+            var quantity = req.body.quantity;
+            // console.log("Quantity: " + quantity);
+
+            // If the user already owns shares at the same price, update the shares
+            if(price in userport.securities[req.body.symbol]) {
+                //console.log(userport.securities[req.body.symbol][price]);
+                quantity += userport.securities[req.body.symbol][price];
+            }
+
             var updatehelper = {
                 'portfolio.cash' : userport.cash - price * req.body.quantity,
-                [path] : req.body.quantity
+                [path] : quantity
             };
             userref.update(updatehelper);
+        } else if(req.body.type === "sell") {
+            
+        } else {
+            return res.status(400).json({error: "invalid trade type"});
         }
         
         // Placeholder return
