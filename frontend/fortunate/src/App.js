@@ -1,18 +1,16 @@
-
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './App.css';
-import {Helmet} from 'react-helmet';
-import jwtDecode from 'jwt-decode';
-import AuthRoute from './util/AuthRoute';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "./App.css";
+import { Helmet } from "react-helmet";
+import jwtDecode from "jwt-decode";
+import AuthRoute from "./util/AuthRoute";
 
 // MUI stuff
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
- import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
+import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 
-
- import Header from './components/Header'
- /*
+import Header from "./components/Header";
+/*
  import BodyContainer from './components/BodyContainer'
  import BodyContainer2 from './components/BodyContainer2'
  import BodyContainer3 from './components/BodyContainer3'
@@ -26,8 +24,8 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 /// Pages
 //import home from './pages/home';
-import login from './pages/login';
-import signup from './pages/signup';
+import login from "./pages/login";
+import signup from "./pages/signup";
 
 /*
 const theme = createMuiTheme ({
@@ -62,28 +60,26 @@ if(token){
   <BodyContainer5 />
   <Footer /> */
 
-class App extends Component{
-  render() {
-  return (
-    <div className="App">
+class App extends Component {
+	render() {
+		return (
+			<div className="App">
+				<Helmet>
+					<style>{"body {background-color: #424242;}"}</style> // #fff
+					- white #424242-grey #ffab00 -yellowish
+				</Helmet>
 
-    <Helmet>
-    <style>{'body {background-color: #424242;}'}</style> // #fff - white #424242-grey #ffab00 -yellowish
-    </Helmet>
-
-      <Router>
-
-    <Header />
-      <div className="container">
-
-        <Switch>
-      <Route exact path="/login" component={login} />
-      <Route exact path="/signup" component={signup} />
-    </Switch>
-        </div>
-      </Router>
-  </div>
-  );
- }
+				<Router>
+					<Header />
+					<div className="container">
+						<Switch>
+							<Route exact path="/login" component={login} />
+							<Route exact path="/signup" component={signup} />
+						</Switch>
+					</div>
+				</Router>
+			</div>
+		);
+	}
 }
 export default App;
