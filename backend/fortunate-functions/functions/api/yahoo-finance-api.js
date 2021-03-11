@@ -23,14 +23,14 @@ exports.getMarketSummary = (req, res) => {
         }).end((result) => {
             console.log(result.error);
             if (result.error) throw new Error(result.error);
-            console.log(result.body.marketSummaryResponse);
-            // db.collection('api').doc('market').set(result.body.marketSummaryResponse.result)
-            // .then(() => {
-            //     return res.status(200).json({success: "Success"});
-            // }).catch(error => {
-            //     console.error(error);
-            //     return res.status(500).json({error: error.code}); 
-            // })
+            // console.log(result.body.marketSummaryResponse);
+            db.collection('api').doc('market').set(result.body.marketSummaryResponse)
+            .then(() => {
+                return res.status(200).json({success: "Success"});
+            }).catch(error => {
+                console.error(error);
+                return res.status(500).json({error: error.code}); 
+            })
         });
 }
 
