@@ -78,9 +78,24 @@ exports.getTicker = (req, res) => {
             "useQueryString": true
         }).end((result) => {
             if (result.error) throw new Error(result.error);
+
+            tickerObj = 
+            {
+                dataGranularity: result.body.chart.result[0].meta.dataGranularity,
+                range: result.body.chart.result[0].meta.range,
+                timestamp: result.body.chart.result[0].timestamp,
+                indicators: 
+                {
+                    open: result.body.chart.result[0].indicators.quote[0].open,
+                    close: result.body.chart.result[0].indicators.quote[0].close,
+                    high: result.body.chart.result[0].indicators.quote[0].high,
+                    low: result.body.chart.result[0].indicators.quote[0].low,
+                    volume: result.body.chart.result[0].indicators.quote[0].volume
+                }
+            }
+            // console.log(result.body.chart.result[0].meta.tradingPeriods);
             // console.log(result.body.chart.result[0].indicators.quote);
-            // console.log(result.body.chart.result[0].meta.symbol);
-            db.collection('tickers').doc(result.body.chart.result[0].meta.symbol).set(result.body.chart.result[0])
+            db.collection('tickers').doc(result.body.chart.result[0].meta.symbol).set(tickerObj)
             .then(() => {
                 return res.status(201).json({success: `Intraday values of ${ticker} with an interval of 1 minute are saved to the database`});
             }).catch(error => {
