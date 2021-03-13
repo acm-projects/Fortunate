@@ -5,10 +5,6 @@ import { Helmet } from "react-helmet";
 import jwtDecode from "jwt-decode";
 import AuthRoute from "./util/AuthRoute";
 
-// Material UI
-import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
-import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
-
 import Header from "./components/Header";
 
 /// Pages
@@ -16,14 +12,15 @@ import login from "./pages/login";
 import signup from "./pages/signup";
 
 // Log-in check
-// let authenticated;
-// const token = localStorage.FBIdToken;
-// if (token) {
-// 	const decodedToken = jwtDecode(token);
-// 	// if (decodedToken.exp * 1000 < Date.now()) {
-// 	// 	window.location.href = "/login";
-// 	// }
-// }
+//let authenticated;
+const token = localStorage.FBIdToken;
+if (token) {
+	//let decodedToken = jwtDecode(token);
+	console.log(token);
+	// if (decodedToken.exp * 1000 < Date.now()) {
+	// 	window.location.href = "/login";
+	// }
+}
 
 class App extends Component {
 	render() {

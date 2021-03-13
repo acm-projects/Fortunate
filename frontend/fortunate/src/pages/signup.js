@@ -1,10 +1,8 @@
-// import Header from './components/Header'
 import React, { Component } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
 import AppIcon from "../images/fortunatelogo.png";
-// import AppIcon to get logo
-
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 // Material UI
@@ -13,15 +11,12 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
-// import FormHelperText from '@material-ui/core/FormHelperText';
-
-import axios from "axios";
+import FormHelperText from "@material-ui/core/FormHelperText";
 
 const styles = {
 	form: {
 		textAlign: "center",
 	},
-	// can add a logo thing
 	pageTitle: {
 		margin: "10px auto 10px auto",
 	},
@@ -100,7 +95,10 @@ class signup extends Component {
 				<Grid item sm />
 				<Grid item sm>
 					<img src={AppIcon} alt="coin" width="100" height="100" />
-					<Typography variant="h3" className={classes.pagetitle}>
+					<Typography
+						variant="h3"
+						className={"title" /* + classes.pagetitle*/}
+					>
 						Signup
 					</Typography>
 					<form noValidate onSubmit={this.handleSubmit}>

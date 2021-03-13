@@ -1,9 +1,7 @@
-//import Header from './components/Header'
 import React, { Component } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
 import AppIcon from "../images/fortunatelogo.png";
-//import AppIcon to get logo
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -13,15 +11,11 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
-//import FormHelperText from '@material-ui/core/FormHelperText';
+import FormHelperText from "@material-ui/core/FormHelperText";
 
 const styles = {
 	form: {
 		textAlign: "center",
-	},
-	// TODO: Add logo
-	image: {
-		margin: "20px auto 20px auto",
 	},
 	pageTitle: {
 		margin: "10px auto 10px auto",
@@ -40,6 +34,9 @@ const styles = {
 	},
 	progress: {
 		position: "absolute",
+	},
+	image: {
+		margin: "20px auto 20px auto",
 	},
 };
 
@@ -66,8 +63,7 @@ class login extends Component {
 		axios
 			.post("/login", userData)
 			.then(response => {
-				console.log(response.data);
-				localStorage.setItem("FBIdToken", "Bearer ${res.data.token}");
+				//localStorage.setItem("FBIdToken", "Bearer ${res.data.token}");
 				this.setState({
 					loading: false,
 				});
@@ -95,7 +91,10 @@ class login extends Component {
 				<Grid item sm />
 				<Grid item sm>
 					<img src={AppIcon} alt="coin" width="200" height="200" />
-					<Typography variant="h3" className={classes.pagetitle}>
+					<Typography
+						variant="h3"
+						className={"title " + classes.pagetitle}
+					>
 						Login
 					</Typography>
 					<form noValidate onSubmit={this.handleSubmit}>
