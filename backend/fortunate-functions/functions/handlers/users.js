@@ -5,6 +5,9 @@ firebase.initializeApp(config);
 
 const { validateLoginData, validateSignUpData } = require("../util/validators");
 
+const { getTickerList } = require('../util/helper');
+const { getTicker } = require('../util/yahooapi');
+
 // Handles log-in requests
 exports.login = (request, response) => {
 	const user = {
@@ -74,4 +77,46 @@ exports.signup = (req, res) => {
         console.error(error);
         return res.status(500).json({error: error.code}); 
     })
+}
+
+
+
+
+
+/**
+ * Updates all database ticker values for the supported symbols
+ */
+ const updateTickers = () => {
+    const tickerList =  getTickerList();    // TODO: FIGURE OUT WHAT TICKERS WE NEED
+    
+    tickersToAdd = [];
+    tickerList.s&p500.forEach((ticker) => {
+       tickersToAdd.push(ticker);
+       if ( tickersToAdd.count === 6) {
+           // TODO: Make a post request to get the value for a group of 6 tickers
+           tickersToAdd.length = 0;
+       }
+       // TODO: Make a post request to get the value for a group of tickers leftover in tickersToAdd
+    });
+}
+
+
+/**
+ * @returns Quote info
+ * 
+ * Request format:
+ * {
+ *      symbol : "{symbol}"
+ * }
+ */
+exports.getQuoteInfo = (req, res) => {
+    const db = require('../util/admin').admin.firestore();
+    const doc = db.collection('ticker').doc(req.body.symbol).get(); // get the document ref from database
+
+    if ( !doc.exists ) { // if document DOESN't exist
+        return res.status(400).json({ error: `${req.body.symbol} is not supported`});
+    }
+    else { // if document DOES exist
+        return res.status(200).json(doc.data())
+    }
 }
