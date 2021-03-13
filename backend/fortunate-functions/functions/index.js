@@ -2,7 +2,7 @@ const functions = require("firebase-functions");
 const app = require("express")();
 
 const { login, signup } = require("./handlers/users");
-const { getMarketSummary, getQuotes } = require("./util/yahooapi");
+const { getMarketSummary, getQuotes, getTicker } = require("./util/yahooapi");
 
 // Users Routes
 app.post("/login", login);
