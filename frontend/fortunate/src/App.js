@@ -1,51 +1,48 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './App.css';
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "./App.css";
+import { Helmet } from "react-helmet";
+import jwtDecode from "jwt-decode";
+import AuthRoute from "./util/AuthRoute";
 
-// Components
-import Navbar from './components/Navbar';
+import Header from "./components/Header";
 
-// Pages
-  // can add home here
-import login from './pages/login';
-import signup from './pages/signup';
-/*
-const theme = createMuiTheme({
-  palette: {
-   primary: {
-     main: '#ad1457',
-     contrastText: '#fff'
-   },
-   secondary: {
-     main: '#ffab00',
-     contrastText: '#fff'
-   }
- },
-})*/
+/// Pages
+import login from "./pages/login";
+import signup from "./pages/signup";
+
+// Log-in check
+//let authenticated;
+const token = localStorage.FBIdToken;
+if (token) {
+	//let decodedToken = jwtDecode(token);
+	console.log(token);
+	// if (decodedToken.exp * 1000 < Date.now()) {
+	// 	window.location.href = "/login";
+	// }
+}
 
 class App extends Component {
-  render() {
-//function App() {
-    return (
-    //  <MuiThemeProvider theme={theme}>
-      <div className="App">
-        <Router>
-// navbar doesn't change just the content of page changes so not under switch
-        <Navbar/>
-        // can add home here
-          <div className="container">
-            <Switch>
-              <Route exact path="/login" component={login}/>
-              <Route exact path="/signup" component={signup}/>
-            </Switch>
-          </div>
-        </Router>
-      </div>
-    //  </MuiThemeProvider>
-    );
-  }
+	render() {
+		return (
+			<div className="App">
+				<Helmet>
+					<style>{"body {background-color: #424242;}"}</style> // #fff
+					- white #424242-grey #ffab00 -yellowish
+				</Helmet>
+
+				<Router>
+					<Header />
+					<div className="container">
+						<Switch>
+							<Route exact path="/login" component={login} />
+							<Route exact path="/signup" component={signup} />
+						</Switch>
+					</div>
+				</Router>
+			</div>
+		);
+	}
 }
 
 export default App;

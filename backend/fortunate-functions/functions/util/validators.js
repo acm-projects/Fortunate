@@ -11,11 +11,13 @@ const isEmpty = str => {
 	else return false;
 };
 
-// Checks if the given user credentials are non-empty and passes the appropriate errors
+// Checks if the given user credential strings are non-empty and valid, if not, passes the appropriate errors
 exports.validateLoginData = user => {
 	let errors = {};
 
 	if (isEmpty(user.email)) errors.email = "Field must not be empty";
+	else if (!isEmail(user.email))
+		errors.email = "Please enter a valid email address";
 	if (isEmpty(user.password)) errors.password = "Field must not be empty";
 
 	return {
@@ -24,21 +26,20 @@ exports.validateLoginData = user => {
 	};
 };
 
+// Checks if the given new user credential strings are non-empty and valid, if not, passes the appropriate errors
 exports.validateSignUpData = user => {
 	let errors = {};
-    if(!isEmail(user.email)) {
-		errors.email = "Please enter a valid email address"
-	}
-	if(isEmpty(user.password)) {
-		errors.password = "Field must not be empty"
-	} else if (user.password !== user.confirm_password) {
-        errors.confirm_password = 'Passwords do not match';
-    }
-    if(isEmpty(user.username)) {
-        errors.username = 'Field not be empty';
-    }
-    return {
+
+	if (isEmpty(user.username)) errors.username = "Field must not be empty";
+	if (isEmpty(user.email)) errors.email = "Field must not be empty";
+	else if (!isEmail(user.email))
+		errors.email = "Please enter a valid email address";
+	if (isEmpty(user.password)) errors.password = "Field must not be empty";
+	else if (user.password !== user.confirmPassword)
+		errors.confirmPassword = "Passwords do not match";
+
+	return {
 		valid: Object.keys(errors).length === 0,
-		errors
+		errors,
 	};
 };
