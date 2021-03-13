@@ -11,11 +11,13 @@ const isEmpty = str => {
 	else return false;
 };
 
-// Checks if the given user credentials are non-empty then passes the appropriate errors
+// Checks if the given user credential strings are non-empty and valid, if not, passes the appropriate errors
 exports.validateLoginData = user => {
 	let errors = {};
 
 	if (isEmpty(user.email)) errors.email = "Field must not be empty";
+	else if (!isEmail(user.email))
+		errors.email = "Please enter a valid email address";
 	if (isEmpty(user.password)) errors.password = "Field must not be empty";
 
 	return {
@@ -24,7 +26,7 @@ exports.validateLoginData = user => {
 	};
 };
 
-// Checks if the given user credentials are non-empty and valid then passes the appropriate errors
+// Checks if the given new user credential strings are non-empty and valid, if not, passes the appropriate errors
 exports.validateSignUpData = user => {
 	let errors = {};
 

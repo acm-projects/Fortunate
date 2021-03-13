@@ -6,7 +6,8 @@ import AppIcon from "../images/fortunatelogo.png";
 // import AppIcon to get logo
 
 import { Link } from "react-router-dom";
-// MUi stuff
+
+// Material UI
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";

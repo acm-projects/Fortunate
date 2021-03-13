@@ -5,60 +5,25 @@ import { Helmet } from "react-helmet";
 import jwtDecode from "jwt-decode";
 import AuthRoute from "./util/AuthRoute";
 
-// MUI stuff
+// Material UI
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 
 import Header from "./components/Header";
-/*
- import BodyContainer from './components/BodyContainer'
- import BodyContainer2 from './components/BodyContainer2'
- import BodyContainer3 from './components/BodyContainer3'
- import BodyContainer4 from './components/BodyContainer4'
- import BodyContainer5 from './components/BodyContainer5'
- import Footer from './components/Footer'
-
-*/
-// components
-// import Navbar from './components/Navbar';
 
 /// Pages
-//import home from './pages/home';
 import login from "./pages/login";
 import signup from "./pages/signup";
 
-/*
-const theme = createMuiTheme ({
-  palette:{
-
-  },
-});
-*/
-/*  //////////////////////////////////////// once signed in no sign in available
-let authenticated;
-const token = localStorage.FBIdToken;
-if(token){
-  const decodedToken = jwtDecode(token);
-  if(decodedToken.exp * 1000 < Data.now()){
-  window.location.href = '/login'
-  authenticated = false; // timed out
-  } else {
-  authenticated = true;
-  }
-}*/
-// in line 57 58
-//  <AuthRoute exact path="/login" component={login} authenticated={authenticated}/>
-//  <AuthRoute exact path="/signup" component={signup} authenticated={authenticated}/>
-//line 74
-
-// components for a single page
-/*<Header />
-  <BodyContainer />
-  <BodyContainer2 />
-  <BodyContainer3 />
-  <BodyContainer4 />
-  <BodyContainer5 />
-  <Footer /> */
+// Log-in check
+// let authenticated;
+// const token = localStorage.FBIdToken;
+// if (token) {
+// 	const decodedToken = jwtDecode(token);
+// 	// if (decodedToken.exp * 1000 < Date.now()) {
+// 	// 	window.location.href = "/login";
+// 	// }
+// }
 
 class App extends Component {
 	render() {

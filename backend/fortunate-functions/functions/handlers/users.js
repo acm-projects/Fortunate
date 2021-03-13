@@ -27,7 +27,8 @@ exports.login = (request, response) => {
 			return response.json({ token });
 		})
 		.catch(err => {
-			console.error(err);
+			if (err.code === "auth/user-not-found")
+				return response.status(403).json({ general: "User not found" }); // Error 403: Client Error - Forbidden
 			if (err.code === "auth/wrong-password")
 				return response
 					.status(403)
