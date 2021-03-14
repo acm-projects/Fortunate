@@ -77,6 +77,8 @@ exports.getTicker = (req, res) => {
             "x-rapidapi-host": "yahoo-finance-low-latency.p.rapidapi.com",
             "useQueryString": true
         }).end((result) => {
+            console.log(result.body.chart.result[0]);
+
             if (result.error) throw new Error(result.error);
 
             tickerObj = 

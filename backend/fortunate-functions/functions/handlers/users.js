@@ -6,6 +6,8 @@ firebase.initializeApp(config);
 const { validateLoginData, validateSignUpData } = require("../util/validators");
 const { user } = require("firebase-functions/lib/providers/auth");
 
+const db = require('../util/admin').admin.firestore();
+
 // const FBAuth = require('../util/fbauth');
 // Handles log-in requests
 exports.login = (request, response) => {
@@ -39,7 +41,6 @@ exports.login = (request, response) => {
 };
 
 exports.signup = (req, res) => {
-	const db = require('../util/admin').admin.firestore();
 	const newUser = {
         email: req.body.email,
         username: req.body.username,
@@ -80,7 +81,6 @@ exports.signup = (req, res) => {
 
 exports.getAuthUser = (req, res) => {
     let userData = {};
-    const db = require('../util/admin').admin.firestore();
 
     // Make sure user exists
     db.doc(`users/${req.user.username}`).get().then((doc) => {
@@ -101,16 +101,28 @@ exports.getAuthUser = (req, res) => {
     });
 };
 
-const getStockPrice = ticker => {
+async function getStockPrice(ticker) {
     // TODO: GET STOCK PRICE FROM DATABASE
-    // TODO: HANDLE INVALID INPUTS
-
-    // THIS IS A SAMPLE VALUE
-    // TODO: RETURN STOCK PRICE
-    return 1000;
+    let ret = -1;
+    await db.doc(`tickers/${ticker}`).get().then(doc => {
+        if (doc.exists) {
+            let data = doc.data();
+            let timestamp = ~~(Date.now() / 1000) - 86400;
+            //timestamp = Math.round(timestamp / 60) * 60;
+            timestamp = 1615581420;
+            console.log('Timestamp: ' + timestamp);
+            if (!(timestamp < data.timestamp[0] || timestamp > data.timestamp[389])) {
+                price = data.indicators.open[data.timestamp.indexOf(timestamp)];
+                console.log("price: " + price);
+                ret = price;
+            }
+        }
+    });
+    console.log(ret);
+    return ret;
 }
 
-exports.trade = (req,res) => {
+exports.trade = async (req,res) => {
 
     /*
      * req format: 
@@ -121,13 +133,14 @@ exports.trade = (req,res) => {
      * }
      */
 
-    const db = require('../util/admin').admin.firestore();
     // TODO: VALIDATE TRADE TIME
     // TODO: GET STOCK INFORMATION FROM DATABASE
-    var price = getStockPrice("TICKER");
+    var price = await getStockPrice(req.body.symbol);
+    price = ~~(price * 100) / 100;
+    console.log("Price: " + price);
     let userport = {};
     let userref;
-
+    
     // Determine which user is sending the request
     db.doc(`users/${req.user.username}`).get().then((doc) => {
         if(doc.exists) {
