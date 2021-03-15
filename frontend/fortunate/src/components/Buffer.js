@@ -1,7 +1,7 @@
 const Buffer = () => {
     return (
         <buffer className='Buffer'>
-<p>
+<p className="BodyText">
 
 </p>
           

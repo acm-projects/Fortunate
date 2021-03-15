@@ -1,6 +1,7 @@
 import Button from "./Button"
 import Buffer from "./Buffer"
 import TopButton from "./TopButton"
+import AppIcon from "../images/fortunatelogo.png";
 const BodyContainer = () => {
     return (
         <bodyContainer className='BodyContainer'>
@@ -8,7 +9,7 @@ const BodyContainer = () => {
       <h2>Slogan</h2>
       <Buffer/>
       <div className='centered'>
-          <img src="../Icon_Image.svg" width='250'></img>
+          <img src={AppIcon} alt="coin" width="200" height="200" />
           </div>
           <Buffer/>
       <div className='centered'>
