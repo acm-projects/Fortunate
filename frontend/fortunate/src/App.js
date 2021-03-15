@@ -5,16 +5,24 @@ import BodyContainer3 from './components/BodyContainer3'
 import BodyContainer4 from './components/BodyContainer4'
 import BodyContainer5 from './components/BodyContainer5'
 import Footer from './components/Footer'
-function App() {
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Home from './components/Home'
 
+
+function App() {
   return (
     <div className="container">
       <Header />
-      <BodyContainer />
-      <BodyContainer2 />
-      <BodyContainer3 />
-      <BodyContainer4 />
-      <BodyContainer5 />
+            <Router>
+        <Switch>
+        <Route exact path="/" component={Home}/>
+        </Switch>
+      </Router>
       <Footer />
     </div>
   );

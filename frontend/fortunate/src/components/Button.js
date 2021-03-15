@@ -11,7 +11,7 @@ const Button = ({color, width, text, onClick}) => {
 }
 
 Button.defaultProps = {
-    color: '#c2bc91'
+    color: 'gainsboro'
 }
 
 Button.propTypes = {
