@@ -11,6 +11,7 @@ const TopButton = ({color, text, width, onClick}) => {
 }
 
 TopButton.defaultProps = {
+    color: 'gainsboro'
 }
 
 TopButton.propTypes = {
