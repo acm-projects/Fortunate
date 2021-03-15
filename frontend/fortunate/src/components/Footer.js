@@ -11,9 +11,9 @@ const Footer = () => {
             <Button text ='Virtual Market'/>
             <Button text ='Courses'/>
             <Button text ='Contact'/>
-            <TopButton width = '200px' text ='Sign Up'/>
-            <TopButton width = '200px' text ='Login'/>
-            <TopButton width = '200px'text = 'Top'/>
+            <Button text ='Sign Up'/>
+            <Button text ='Login'/>
+            <Button text = 'Top'/>
         </footer>
     )
 }

@@ -1,9 +1,11 @@
 import Button from "./Button"
 import TopButton from "./TopButton"
+
 const Header = () => {
     const onClick = () => {
         console.log('Click')
     }
+
     return (
         <header className='header'>
             <h1 className='logo'>Fortunate</h1>
@@ -13,8 +15,8 @@ const Header = () => {
             <a href="#VM">Virtual Market</a>
             <Button text ='Courses'/>
             <Button text ='Contact'/>
-            <TopButton width = '250px' text ='Sign Up'/>
-            <TopButton width = '250px' text ='Login'/>
+            <Button text ='Sign Up'/>
+            <Button text ='Login'/>
         </header>
     )
 }

@@ -5,11 +5,13 @@ import { Helmet } from "react-helmet";
 import jwtDecode from "jwt-decode";
 import AuthRoute from "./util/AuthRoute";
 
-import Header from "./components/Header";
+import Header from './components/Header'
+import Footer from './components/Footer'
 
 /// Pages
 import login from "./pages/login";
 import signup from "./pages/signup";
+import Home from './components/Home'
 
 // Log-in check
 //let authenticated;
@@ -35,6 +37,7 @@ class App extends Component {
 					<Header />
 					<div className="container">
 						<Switch>
+              <Route exact path="/" component={Home}/>
 							<Route exact path="/login" component={login} />
 							<Route exact path="/signup" component={signup} />
 						</Switch>

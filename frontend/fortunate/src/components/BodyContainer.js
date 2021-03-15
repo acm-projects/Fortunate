@@ -12,7 +12,7 @@ const BodyContainer = () => {
           </div>
           <Buffer/>
       <div className='centered'>
-          <TopButton width = '200px' text = "Sign Up"></TopButton>
+          <TopButton width = '200px' text = "Sign Up" color='gainsboro'></TopButton>
           </div>
           <Buffer/>
        
