@@ -11,7 +11,8 @@ import Footer from './components/Footer'
 /// Pages
 import login from "./pages/login";
 import signup from "./pages/signup";
-import Home from './components/Home'
+import home from './pages/home';
+import portfolio from './pages/portfolio';
 
 // Log-in check
 //let authenticated;
@@ -37,9 +38,10 @@ class App extends Component {
 					<Header />
 					<div className="container">
 						<Switch>
-              <Route exact path="/" component={Home}/>
+              <Route exact path="/" component={home}/>
 							<Route exact path="/login" component={login} />
 							<Route exact path="/signup" component={signup} />
+              <Route exact path="/portfolio" component={portfolio} />
 						</Switch>
 					</div>
           <Footer/>
