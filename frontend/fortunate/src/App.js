@@ -9,32 +9,32 @@ import Navbar from './components/Navbar';
 
 // Pages
   // can add home here
+// import Header from './components/Header'
 import login from './pages/login';
 import signup from './pages/signup';
-/*
+
 const theme = createMuiTheme({
   palette: {
-   primary: {
-     main: '#ad1457',
-     contrastText: '#fff'
-   },
-   secondary: {
-     main: '#ffab00',
-     contrastText: '#fff'
-   }
- },
-})*/
+    primary: {
+       main: '#515b5f',
+    },
+    secondary: {
+      main: '#ffb300',
+    },
+  },
+})
 
 class App extends Component {
   render() {
-//function App() {
     return (
-    //  <MuiThemeProvider theme={theme}>
+    <MuiThemeProvider theme={theme}>
       <div className="App">
+
+        // can add home here
+
         <Router>
 // navbar doesn't change just the content of page changes so not under switch
-        <Navbar/>
-        // can add home here
+      <Navbar/>
           <div className="container">
             <Switch>
               <Route exact path="/login" component={login}/>
@@ -43,7 +43,7 @@ class App extends Component {
           </div>
         </Router>
       </div>
-    //  </MuiThemeProvider>
+    </MuiThemeProvider>
     );
   }
 }

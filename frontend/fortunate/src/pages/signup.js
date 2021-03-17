@@ -1,24 +1,8 @@
-
-import React, { Component } from 'react';
-
-class signup extends Component {
-  render() {
-    return (
-      <div>
-        <h1> Signup Page </h1>
-        </div>
-    );
-  }
-}
-
-export default signup;
-
-// import Header from './components/Header'
+//import Header from '../components/Header'
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
 import AppIcon from '../images/fortunatelogo.png';
-// import AppIcon to get logo
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 // MUi stuff
