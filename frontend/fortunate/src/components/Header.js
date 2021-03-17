@@ -16,7 +16,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-
+import Grid from '@material-ui/core/Grid';
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -165,7 +165,7 @@ export default function Header() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar position="static" elevation={20}>
         <Toolbar>
           <IconButton
             edge="start"
@@ -191,22 +191,36 @@ export default function Header() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
-          <div className={classes.grow} />
+          <div className={classes.grow}/>
           <div className={classes.sectionDesktop}>
+          
           <div>
-          <Link to ="/">
-            <Button text ='About'/>
-            </Link>
-            <Button text ='Virtual Market'/>
-            <Button text ='Courses'/>
-            <Button text ='Contact'/>
-            <Link to="/signup">
-            <Button text ='Sign Up'/>
-            </Link>          
-            <Link to="/login">
-            <Button text ='Login'/>
-            </Link>
-
+                <Grid container justify="flex-start">   
+                    <Grid item xs={2}>
+                    <Link to ="/">
+                    <Button text ='About'/>
+                    </Link>
+                    </Grid>
+                    <Grid item xs={2}>
+                    <Button text ='Virtual Market'/>
+                    </Grid>
+                    <Grid item xs={2}>
+                    <Button text ='Courses'/>
+                    </Grid>
+                    <Grid item xs={2}>
+                    <Button text ='Contact'/>
+                    </Grid>
+                    <Grid item xs={2}>
+                    <Link to="/signup">
+                    <Button text ='Sign Up'/>
+                    </Link>      
+                    </Grid>
+                    <Grid item xs={2}>
+                    <Link to="/login">
+                    <Button text ='Login'/>
+                    </Link>
+                    </Grid>
+                </Grid>
           </div>
           
             <IconButton aria-label="show 4 new mails" color="inherit">

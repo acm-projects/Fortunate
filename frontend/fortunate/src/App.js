@@ -35,8 +35,8 @@ class App extends Component {
 				</Helmet>
 
 				<Router>
-					<Header />
-					<div className="container">
+         <Header/>
+					<div>
 						<Switch>
               <Route exact path="/" component={home}/>
 							<Route exact path="/login" component={login} />

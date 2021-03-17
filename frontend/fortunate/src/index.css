@@ -13,6 +13,10 @@ html {
   background-color: #2d313a;
 }
 
+.GrayPaper {
+  background-color: grey;
+}
+
 .header {
   display: flex;
   justify-content: space-between;

@@ -8,7 +8,8 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       main: '#404040'
-  }
+  },
+  background: {paper: '#616161'}
 }
   
 })
