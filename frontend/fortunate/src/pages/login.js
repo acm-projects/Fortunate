@@ -1,4 +1,5 @@
 
+
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
@@ -140,7 +141,7 @@ class login extends Component {
 }
 
 login.propTypes = {
-  classes: PropTypes.object.isRequired
-}
+	classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(login);
