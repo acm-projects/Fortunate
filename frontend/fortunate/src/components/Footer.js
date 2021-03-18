@@ -38,7 +38,7 @@ const Footer = () => {
         console.log('Click')
     }
 const classes = useStyles();
-    
+
     return (
         <footer>
             <Box boxShadow="20px 20px 20px 20px">
@@ -55,10 +55,14 @@ const classes = useStyles();
                         </Link>
                         </Grid>
                         <Grid item xs={1}>
+                        <a href='#VM'>
                         <Button text ='Virtual Market'/>
+                        </a>
                         </Grid>
                         <Grid item xs={1}>
-                        <Button text ='Courses'/>  
+                        <a href='#lessons'>
+                        <Button text ='Courses'/>
+                        </a>
                         </Grid>
                         <Grid item xs={1}>
                         <Button text ='Contact'/>
@@ -66,7 +70,7 @@ const classes = useStyles();
                         <Grid item xs={1}>
                         <Link to="/signup">
                         <Button text ='Sign Up'/>
-                        </Link> 
+                        </Link>
                         </Grid>
                         <Grid item xs={1}>
                         <Link to="/login">
@@ -74,7 +78,9 @@ const classes = useStyles();
                         </Link>
                         </Grid>
                         <Grid item xs={1}>
+                        <a href='#top'>
                         <Button text = 'Top'/>
+                        </a>
                         </Grid>
                     </Grid>
                 </Toolbar>
@@ -86,4 +92,3 @@ const classes = useStyles();
 }
 
 export default Footer
-

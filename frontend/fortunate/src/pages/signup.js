@@ -12,8 +12,6 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
-// import FormHelperText from '@material-ui/core/FormHelperText';
-
 
 const styles = {
 	form: {
@@ -187,7 +185,7 @@ class signup extends Component {
 							)}
 						</Button>
 						<br />
-						<small>
+						<small style={{ color: 'gold' }}>
 							Already have an account? Login{" "}
 							<Link to="/login" style={{ color: "#FFF" }}>
 								here

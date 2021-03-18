@@ -1,4 +1,4 @@
-//import Button from "./Button"
+import Button from "./Button"
 /*import TopButton from "./TopButton"
 
 // import Link from 'react-router-dom/Link';
@@ -228,10 +228,14 @@ export default function Header() {
                     </Link>
                     </Grid>
                     <Grid item xs={2}>
+                      <a href='#VM'>
                     <Button text ='Virtual Market'/>
+                    </a>
                     </Grid>
                     <Grid item xs={2}>
+                  <a href='#lessons'>
                     <Button text ='Courses'/>
+                    </a>
                     </Grid>
                     <Grid item xs={2}>
                     <Button text ='Contact'/>

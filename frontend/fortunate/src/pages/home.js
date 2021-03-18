@@ -12,18 +12,20 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { spacing } from '@material-ui/system';
 
-
+// added line 25&24 to link with header
 const Home = () => {
     return (
         <home>
-            <Grid container> 
+            <Grid container>
                 <Grid item xs={12}>
                     <Box width="100%">
                         <Box paddingTop={4}>
                             <Paper elevation={20}>
                                 <Box paddingTop={1}>
+                                <div id='top'>
                                     <h1>Fortunate</h1>
                                     <h2>Slogan</h2>
+                                </div>
                                     <Buffer/>
                                     <div className='centered'>
                                         <img src={AppIcon} alt="coin" width="200" height="200" />
@@ -62,7 +64,9 @@ const Home = () => {
                     <Box Box width="100%">
                         <Paper elevation={20}>
                             <Box paddingTop={1}>
+                            <div id='lessons'>
                                 <h2>Lessons</h2>
+                            </div>
                                 <Buffer/>
                                 <div className='centered'>
                                     <p className ='BodyText'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. </p>
@@ -80,7 +84,9 @@ const Home = () => {
                     <Box Box width="100%">
                         <Paper elevation={20}>
                             <Box paddingTop={1}>
+                            <div id='VM'>
                                 <h2>Virtual Market</h2>
+                              </div>
                                 <Buffer/>
                                 <div className='centered'>
                                     <p className="BodyText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. </p>

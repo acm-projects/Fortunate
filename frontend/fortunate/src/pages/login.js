@@ -99,7 +99,7 @@ class login extends Component {
 
         <img src={AppIcon} alt="coin" width="200" height="200"/>
 
-          <Typography variant="h3" className={classes.pagetitle}>
+          <Typography variant="h3" className={classes.pagetitle} style={{ color: 'gold' }}>
           Login
           </Typography>
           <form noValidate onsubmit={this.handleSubmit}>
@@ -130,7 +130,10 @@ class login extends Component {
           </Button>
 <br />
 
-          <small>Don't have account? Sign-up <Link to="/signup" style={{color: '#FFF'}}>here</Link></small>
+          <small style={{ color: 'gold'}}>
+          Don't have account? Sign-up{" "}
+          <Link to="/signup" style={{color: '#FFF'}}>here</Link>
+          </small>
 
           </form>
         </Grid>
