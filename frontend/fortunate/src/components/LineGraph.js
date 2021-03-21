@@ -6,8 +6,16 @@ const LineGraph = () => {
     return (
         <div className='LineGraph'>
             <Line
-            height={1}
-            width={1}>
+            height="400"
+            width="800"
+            options={{
+                title:{
+                    display:true,
+                    text:"Portfolio Performance",
+                    fontSize:20
+                }
+            }}
+            >
 
             </Line>
             </div>

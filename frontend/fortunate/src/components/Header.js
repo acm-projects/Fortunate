@@ -1,30 +1,5 @@
+
 import Button from "./Button"
-/*import TopButton from "./TopButton"
-
-// import Link from 'react-router-dom/Link';
-// import Button from '@material-ui/core/Button';
-
-const Header = () => {
-    const onClick = () => {
-        console.log('Click')
-    }
-    return (
-        <header className='header'>
-            <h1 className='logo'>Fortunate</h1>
-           <Button text ='About' onClick={onClick}/>
-          //  <a href="#about">About</a>
-            <Button text ='Virtual Market'/>
-          //  <a href="#VM">Virtual Market</a>
-            <Button text ='Courses'/>
-            <Button text ='Contact'/>
-            <TopButton width = '250px' text ='Sign Up'/>// component={Link} to="/login"/>
-            <TopButton width = '250px' text ='Login'/>
-        </header>
-    )
-}
-
-export default Header */
-
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import React from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
@@ -190,9 +165,11 @@ export default function Header() {
   );
 
   return (
-    <div className={classes.grow}>
+    <div>
       <AppBar position="static" elevation={20}>
         <Toolbar>
+        <Grid container direction="row" alignItems="center" justify="space-around">
+            <Grid item>
           <IconButton
             edge="start"
             className={classes.menuButton}
@@ -201,6 +178,7 @@ export default function Header() {
           >
             <MenuIcon />
           </IconButton>
+          </Grid>
           <Typography className={classes.title} variant="h6" noWrap>
           <h1 className='logo'>Fortunate</h1>
           </Typography>
@@ -216,43 +194,42 @@ export default function Header() {
               }}
               inputProps={{ 'aria-label': 'search' }}
             />
-          </div>
-          <div className={classes.grow}/>
-          <div className={classes.sectionDesktop}>
-
-          <div>
-                <Grid container justify="flex-start">
-                    <Grid item xs={2}>
+          </div> 
+          
+          
+        
+                <Grid item>
+                <Grid container>
+                    <Grid item>
                     <Link to ="/">
                     <Button text ='About'/>
                     </Link>
                     </Grid>
-                    <Grid item xs={2}>
+                    <Grid item>
                       <a href='#VM'>
                     <Button text ='Virtual Market'/>
                     </a>
                     </Grid>
-                    <Grid item xs={2}>
+                    <Grid item>
                   <a href='#lessons'>
                     <Button text ='Courses'/>
                     </a>
                     </Grid>
-                    <Grid item xs={2}>
+                    <Grid item>
                     <Button text ='Contact'/>
                     </Grid>
-                    <Grid item xs={2}>
+                    <Grid item>
                     <Link to="/signup">
                     <Button text ='Sign Up'/>
                     </Link>
                     </Grid>
-                    <Grid item xs={2}>
+                    <Grid item>
                     <Link to="/login">
                     <Button text ='Login'/>
                     </Link>
                     </Grid>
                 </Grid>
-          </div>
-
+                </Grid>
             <IconButton aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <MailIcon />
@@ -273,7 +250,8 @@ export default function Header() {
             >
               <AccountCircle />
             </IconButton>
-          </div>
+          
+          
           <div className={classes.sectionMobile}>
             <IconButton
               aria-label="show more"
@@ -284,7 +262,9 @@ export default function Header() {
             >
               <MoreIcon />
             </IconButton>
+            
           </div>
+          </Grid>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
