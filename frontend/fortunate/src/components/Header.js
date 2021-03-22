@@ -118,8 +118,16 @@ export default function Header() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+    <MenuItem onClick={handleMenuClose}>
+        <Link to="/">
+            <Button text={"My Account"}></Button>
+        </Link>
+    </MenuItem>
+    <MenuItem onClick={handleMenuClose}>
+        <Link to="/portfolio">
+            <Button text={"My Portfolio"}></Button>
+        </Link>
+    </MenuItem>
     </Menu>
   );
 
