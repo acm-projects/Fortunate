@@ -143,7 +143,11 @@ exports.trade = async (req,res) => {
     }
     let userport = {};
     let userref;
-    
+
+    let transaction = {};
+    transaction.price = price;
+    transaction.quantity = req.body.quantity;
+    transaction.timestamp = new Date().toISOString();
     // Determine which user is sending the request
     db.doc(`users/${req.user.username}`).get().then((doc) => {
         if(doc.exists) {
@@ -158,10 +162,10 @@ exports.trade = async (req,res) => {
         // Variables for where the location of the data will be
         var path = 'portfolio.securities.' + req.body.symbol;
         var quantity = req.body.quantity;
-         
+        
         // Handle different request type: BUY or SELL
         if(req.body.type === "buy") {
-
+            transaction.type = 'buy';
             // Make sure the user has enough money to purchase
             if(price * req.body.quantity > userport.cash) {
                 return res.status(400).json({error: "Not Enough Cash"});
@@ -179,7 +183,7 @@ exports.trade = async (req,res) => {
             };
             userref.update(updatehelper);
         } else if(req.body.type === "sell") {
-            
+            transaction.type = 'sell';
             // Verify that the user actually owns shares
             if(!(req.body.symbol in userport.securities)) {
                 return res.status(400).json({error: "No shares owned"});
@@ -204,6 +208,7 @@ exports.trade = async (req,res) => {
         }
         
         // Placeholder return
+        data.ref.collection('transactions').add(transaction);
         return res.json({Success : "Success"});
     }).catch((error) => {
         console.error(error);
