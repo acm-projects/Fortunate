@@ -154,7 +154,7 @@ exports.trade = async (req,res) => {
             userref = db.collection('userdata').doc(req.user.username);
             return userref.get();
         }
-    }).then((data) => {
+    }).then(async (data) => {
 
         // Get the users portfolio information
         userport = data.data().portfolio;
@@ -208,8 +208,8 @@ exports.trade = async (req,res) => {
         }
         
         // Placeholder return
-        data.ref.collection('transactions').add(transaction);
-        return res.json({Success : "Success"});
+        const tres = await data.ref.collection('transactions').add(transaction);
+        return res.json({Success : `Transaction succeeded with id: ${tres.id}`});
     }).catch((error) => {
         console.error(error);
         return res.status(500).json({error: error.code});
