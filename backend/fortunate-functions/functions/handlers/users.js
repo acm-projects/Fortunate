@@ -108,8 +108,8 @@ async function getStockPrice(ticker) {
         if (doc.exists) {
             let data = doc.data();
             let timestamp = ~~(Date.now() / 1000) - 86400;
-            //timestamp = Math.round(timestamp / 60) * 60;
-            timestamp = 1615581420;
+            timestamp = Math.round(timestamp / 60) * 60;
+            //timestamp = 1615581420;
             console.log('Timestamp: ' + timestamp);
             if (!(timestamp < data.timestamp[0] || timestamp > data.timestamp[389])) {
                 price = data.indicators.open[data.timestamp.indexOf(timestamp)];
@@ -138,6 +138,9 @@ exports.trade = async (req,res) => {
     var price = await getStockPrice(req.body.symbol);
     price = ~~(price * 100) / 100;
     console.log("Price: " + price);
+    if(price == -1) {
+        return res.status(400).json({error : "Can't order at this time."});
+    }
     let userport = {};
     let userref;
     
