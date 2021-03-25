@@ -76,7 +76,7 @@ exports.getQuotes = (req, res) => {
 
 
 /**
- * Store the intraday values for a stock with an interval of 1 minute to the database
+ * Store the intraday values for a single stock with an interval of 1 minute to the database
  * Stored in:
  *      Collection: "tickers"
  *      Doc: name of the symbol
@@ -116,7 +116,7 @@ exports.getQuotes = (req, res) => {
                     close: result.body.chart.result[0].indicators.quote[0].close,
                     high: result.body.chart.result[0].indicators.quote[0].high,
                     low: result.body.chart.result[0].indicators.quote[0].low,
-                    volume: result.body.chart.result[0].indicators.quote[0].volume
+                    // volume: result.body.chart.result[0].indicators.quote[0].volume
                 }
             }
             // console.log(result.body.chart.result[0].meta.tradingPeriods);

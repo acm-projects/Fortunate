@@ -87,7 +87,7 @@ exports.signup = (req, res) => {
  * Updates all database ticker values for the supported symbols
  */
  const updateTickers = () => {
-    const tickerList =  getTickerList();    // TODO: FIGURE OUT WHAT TICKERS WE NEED
+    const tickerList =  getTickerList();    // The list of all supported stocks 
     
     tickersToAdd = [];
     tickerList.s&p500.forEach((ticker) => {
