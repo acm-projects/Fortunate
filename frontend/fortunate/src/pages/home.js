@@ -4,7 +4,7 @@ import Button from "../components/Button"
 import Buffer from "../components/Buffer"
 import TopButton from "../components/TopButton"
 import AppIcon from "../images/fortunatelogo.png";
-
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
@@ -32,7 +32,9 @@ const Home = () => {
                                     </div>
                                     <Buffer/>
                                     <div className='centered'>
-                                        <TopButton width = '200px' text = "Sign Up" color='gainsboro'></TopButton>
+                                        <Link to="/">
+                                            <TopButton width = '200px' text = "Sign Up" color='gainsboro'></TopButton>
+                                        </Link>
                                     </div>
                                     <Buffer/>
                                 </Box>
@@ -93,7 +95,9 @@ const Home = () => {
                                 </div>
                                 <Buffer/>
                                 <div className='centered'>
+                                    <Link to="/portfolio">
                                     <TopButton width = '500px' text = "Enter Virtual Market"></TopButton>
+                                    </Link>
                                 </div>
                                 <Buffer/>
                             </Box>

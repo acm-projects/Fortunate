@@ -55,7 +55,7 @@ const classes = useStyles();
                         </Link>
                         </Grid>
                         <Grid item xs={1}>
-                        <a href='#VM'>
+                        <a href='/portfolio'>
                         <Button text ='Virtual Market'/>
                         </a>
                         </Grid>

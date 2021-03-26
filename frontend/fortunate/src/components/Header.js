@@ -216,7 +216,7 @@ export default function Header() {
                         </Link>
                         </Grid>
                         <Grid item>
-                        <a href='#VM'>
+                        <a href='/portfolio'>
                         <Button text ='Virtual Market'/>
                         </a>
                         </Grid>

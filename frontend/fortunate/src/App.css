@@ -68,6 +68,9 @@ body {
 .LineGraph {
 	background-color: black;
 }
+.PieChart {
+	background-color: black;
+}
 .BodyContainer {
 	display: block;
 	justify-content: space-between;
@@ -126,6 +129,11 @@ h2 {
 .centered {
 	display: flex;
 	justify-content: center;
+}
+
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
 }
 .topbutton {
 	color: gainsboro;
