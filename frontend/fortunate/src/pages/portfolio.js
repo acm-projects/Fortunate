@@ -23,8 +23,10 @@ const Portfolio = () => {
                 </Grid>
 
                 <Grid item sm={4} style={{padding:10}}>
-                    <Box   display='flex' justifyContent='center' style={{backgroundColor:'black', height:'414px', color:'white'}}>
-                        Test
+                    <Box display='flex' justifyContent='center' style={{backgroundColor:'black', height:'414px', color:'#666', fontSize:'20px', fontFamily:'"Spartan", sans-serif'}}>
+                        <div style={{paddingTop:10}}>
+                            Recent Trades
+                        </div>
                     </Box>
                 </Grid>
             </Grid>

@@ -12,7 +12,8 @@ const PieChart = () => {
                 title:{
                     display:true,
                     text:"Current Holdings",
-                    fontSize:20
+                    fontSize:20,
+                    fontFamily:'"Spartan", sans-serif'
                 }
             }}
             >

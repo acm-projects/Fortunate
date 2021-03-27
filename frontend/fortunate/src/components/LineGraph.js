@@ -12,7 +12,8 @@ const LineGraph = () => {
                 title:{
                     display:true,
                     text:"Portfolio Performance",
-                    fontSize:20
+                    fontSize:20,
+                    fontFamily:'"Spartan", sans-serif'
                 }
             }}
             >

@@ -162,7 +162,17 @@ a:hover, a:visited, a:link, a:active
 	max-width: 1100px;
 	padding: 10px 0;
 }
+
+.PortfolioBox {
+	font-family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif";
+	background-color:'black'; 
+	height:'414px'; 
+	color:'#666';
+  }
+
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 		monospace;
 }
+
+
