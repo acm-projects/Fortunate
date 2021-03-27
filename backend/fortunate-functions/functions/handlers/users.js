@@ -217,3 +217,55 @@ exports.trade = async (req,res) => {
     // TODO: VALIDATE ORDER
     // TODO: PROCESS ORDER
 }
+
+async function getValueAt(ticker, timestamp) {
+    let ret = -1;
+    await db.doc(`tickers/${ticker}`).get().then(doc => {
+        if (doc.exists) {
+            let data = doc.data();
+            console.log('Timestamp: ' + timestamp);
+            if (!(timestamp < data.timestamp[0] || timestamp > data.timestamp[389])) {
+                price = data.indicators.open[data.timestamp.indexOf(timestamp)];
+                console.log("price: " + price);
+                ret = price;
+            }
+        }
+    });
+    console.log(ret);
+    return ret;
+}
+
+// Calculate a user's portfolio value
+async function calculateUserValue(portfolio) {
+    let value = portfolio.cash;
+    console.log('Starting value: ' + value);
+    const securities = Object.keys(portfolio.securities);
+    console.log(securities);
+    //let timestamp = new Date().setHours(20, 59, 0, 0) / 1000;
+    let timestamp = 1615582740;
+    for(const s of securities) {
+        let v = await getValueAt(s, timestamp);
+        console.log('portfolio.securities[s]: ' + portfolio.securities[s]);
+        value += portfolio.securities[s] * v;
+    }
+    console.log(value);
+    return value;
+}
+
+exports.dayValue = async (req, res) => {
+    db.doc(`users/${req.user.username}`).get().then((doc) => {
+        if(!doc.exists) {
+            //return res.status(400).json({error: 'User does not exist'})
+        }
+        return db.collection('userdata').doc(req.user.username).get();
+    }).then(async (data) => {
+        let value = await calculateUserValue(data.data().portfolio);
+        let date = new Date();
+        date.setHours(0,0,0,0);
+        await data.ref.collection('value').doc(date).set({end: value});
+        return res.status(200).json({value : value});
+    }).catch((error) => {
+        console.error(error);
+        return res.status(500).json({error: error});
+    });
+};
