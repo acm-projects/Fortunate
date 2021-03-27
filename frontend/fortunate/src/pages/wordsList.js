@@ -85,14 +85,5 @@ export const wordsList = [
   {
     word: "Demand",
     meaning: "Demand refers to the total amount of stock potential buyers would be willing to buy at any price."
-  },
-  {
-    word: " ",
-    meaning: "    "
-  },
-  {
-    word: " ",
-    meaning: "    "
-  },
-
+  }
 ];

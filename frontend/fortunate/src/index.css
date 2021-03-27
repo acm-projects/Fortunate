@@ -107,6 +107,13 @@ h2 {
   justify-content: center;
 }
 
+.PortfolioBox {
+	font-family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif";
+	background-color:'black'; 
+	height:'414px'; 
+	color:'#666';
+  }
+
 .topbutton {
   color: gainsboro;
   background-color: #2d313a;

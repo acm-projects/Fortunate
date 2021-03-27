@@ -1,18 +1,14 @@
-
-
 import Button from "../components/Button"
 import Buffer from "../components/Buffer"
 import TopButton from "../components/TopButton"
 import AppIcon from "../images/fortunatelogo.png";
-
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { spacing } from '@material-ui/system';
-
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 // added line 25&24 to link with header
 const Home = () => {
@@ -34,7 +30,9 @@ const Home = () => {
                                     </div>
                                     <Buffer/>
                                     <div className='centered'>
-                                        <TopButton width = '200px' text = "Sign Up" color='gainsboro'></TopButton>
+                                        <Link to="/">
+                                            <TopButton width = '200px' text = "Sign Up" color='gainsboro'></TopButton>
+                                        </Link>
                                     </div>
                                     <Buffer/>
                                 </Box>
@@ -96,7 +94,9 @@ const Home = () => {
                                 </div>
                                 <Buffer/>
                                 <div className='centered'>
+                                    <Link to="/portfolio">
                                     <TopButton width = '500px' text = "Enter Virtual Market"></TopButton>
+                                    </Link>
                                 </div>
                                 <Buffer/>
                             </Box>

@@ -1,26 +1,26 @@
 import { rgbToHex } from '@material-ui/core';
 import React, {Component} from 'react';
-import {Line} from 'react-chartjs-2';
+import {Pie} from 'react-chartjs-2';
 
-const LineGraph = () => {
+const PieChart = () => {
     return (
-        <div className='LineGraph'>
-            <Line
+        <div className='PieChart'>
+            <Pie
             height="400"
             width="600"
             options={{
                 title:{
                     display:true,
-                    text:"Portfolio Performance",
+                    text:"Current Holdings",
                     fontSize:20,
                     fontFamily:'"Spartan", sans-serif'
                 }
             }}
             >
 
-            </Line>
+            </Pie>
             </div>
     )
 }
 
-export default LineGraph
+export default PieChart

@@ -1,3 +1,4 @@
+
 import Button from "./Button"
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import React from 'react';
@@ -117,8 +118,16 @@ export default function Header() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+    <MenuItem onClick={handleMenuClose}>
+        <Link to="/">
+            <Button text={"My Account"}></Button>
+        </Link>
+    </MenuItem>
+    <MenuItem onClick={handleMenuClose}>
+        <Link to="/portfolio">
+            <Button text={"My Portfolio"}></Button>
+        </Link>
+    </MenuItem>
     </Menu>
   );
 
@@ -164,101 +173,108 @@ export default function Header() {
   );
 
   return (
-    <div className={classes.grow}>
+    <div>
       <AppBar position="static" elevation={20}>
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-          <h1 className='logo'>Fortunate</h1>
-          </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
-          <div className={classes.grow}/>
-          <div className={classes.sectionDesktop}>
+            <Grid container direction="row" alignItems="center" justify="space-between">
 
-          <div>
-                <Grid container justify="flex-start">
-                    <Grid item xs={2}>
-                    <Link to ="/">
-                    <Button text ='About'/>
-                    </Link>
-                    </Grid>
-                    <Grid item xs={2}>
-                      <a href='#VM'>
-                    <Button text ='Virtual Market'/>
-                    </a>
-                    </Grid>
-                    <Grid item xs={2}>
-                  <a href='#lessons'>
-                    <Button text ='Courses'/>
-                    </a>
-                    </Grid>
-                    <Grid item xs={2}>
-                    <Button text ='Contact'/>
-                    </Grid>
-                    <Grid item xs={2}>
-                    <Link to="/signup">
-                    <Button text ='Sign Up'/>
-                    </Link>
-                    </Grid>
-                    <Grid item xs={2}>
-                    <Link to="/login">
-                    <Button text ='Login'/>
-                    </Link>
+                <Grid item>
+                    <Grid container alignItems="center">
+                        <IconButton
+                            edge="start"
+                            className={classes.menuButton}
+                            color="inherit"
+                            aria-label="open drawer"
+                        >
+                            <MenuIcon />
+                        </IconButton>
+
+                        <Typography className={classes.title} variant="h6" noWrap>
+                        <h1 className='logo'>Fortunate</h1>
+                        </Typography>
+                        <div className={classes.search}>
+                            <div className={classes.searchIcon}>
+                            <SearchIcon />
+                            </div>
+                            <InputBase
+                            placeholder="Search…"
+                            classes={{
+                                root: classes.inputRoot,
+                                input: classes.inputInput,
+                            }}
+                            inputProps={{ 'aria-label': 'search' }}
+                            />
+                        </div>
                     </Grid>
                 </Grid>
-          </div>
 
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
+                <Grid item xs={7}>
+                    <Grid container justify="space-around">
+                        <Grid item>
+                        <Link to ="/">
+                        <Button text ='About'/>
+                        </Link>
+                        </Grid>
+                        <Grid item>
+                        <a href='/portfolio'>
+                        <Button text ='Virtual Market'/>
+                        </a>
+                        </Grid>
+                        <Grid item>
+                        <a href='#lessons'>
+                        <Button text ='Courses'/>
+                        </a>
+                        </Grid>
+                        <Grid item>
+                        <Button text ='Contact'/>
+                        </Grid>
+                        <Grid item>
+                        <Link to="/signup">
+                        <Button text ='Sign Up'/>
+                        </Link>
+                        </Grid>
+                        <Grid item>
+                        <Link to="/login">
+                        <Button text ='Login'/>
+                        </Link>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+                <Grid item>
+                    <IconButton aria-label="show 4 new mails" color="inherit">
+                    <Badge badgeContent={4} color="secondary">
+                    <MailIcon />
+                    </Badge>
+                    </IconButton>
+                    <IconButton aria-label="show 17 new notifications" color="inherit">
+                    <Badge badgeContent={17} color="secondary">
+                    <NotificationsIcon />
+                    </Badge>
+                    </IconButton>
+                    <IconButton
+                    edge="end"
+                    aria-label="account of current user"
+                    aria-controls={menuId}
+                    aria-haspopup="true"
+                    onClick={handleProfileMenuOpen}
+                    color="inherit"
+                    >
+                    <AccountCircle />
+                    </IconButton>
+                    <div className={classes.sectionMobile}>
+                        <IconButton
+                        aria-label="show more"
+                        aria-controls={mobileMenuId}
+                        aria-haspopup="true"
+                        onClick={handleMobileMenuOpen}
+                        color="inherit"
+                        >
+                        <MoreIcon />
+                        </IconButton>
+                    </div>
+                </Grid>
+            </Grid>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
