@@ -54,6 +54,7 @@ import login from "./pages/login";
 import signup from "./pages/signup";
 import home from './pages/home';
 import portfolio from './pages/portfolio';
+import dictionary from './pages/dictionary';
 
 // Log-in check
 //let authenticated;
@@ -83,6 +84,7 @@ class App extends Component {
 							<Route exact path="/login" component={login} />
 							<Route exact path="/signup" component={signup} />
               <Route exact path="/portfolio" component={portfolio} />
+							<Route exact path="/dictionary" component={dictionary} />
 						</Switch>
 					</div>
           <Footer/>
