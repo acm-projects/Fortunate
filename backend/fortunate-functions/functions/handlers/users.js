@@ -6,7 +6,7 @@ firebase.initializeApp(config);
 const { validateLoginData, validateSignUpData } = require("../util/validators");
 
 const { getTickerList } = require('../util/helper');
-const { getTicker } = require('../util/yahooapi');
+const { getManyTickers } = require('../util/yahooapi');
 
 // Handles log-in requests
 exports.login = (request, response) => {
@@ -86,18 +86,35 @@ exports.signup = (req, res) => {
 /**
  * Updates all database ticker values for the supported symbols
  */
- const updateTickers = () => {
+ exports.updateTickers = (req, res) => {
     const tickerList =  getTickerList();    // The list of all supported stocks 
     
     tickersToAdd = [];
-    tickerList.s&p500.forEach((ticker) => {
-       tickersToAdd.push(ticker);
-       if ( tickersToAdd.count === 6) {
-           // TODO: Make a post request to get the value for a group of 6 tickers
-           tickersToAdd.length = 0;
-       }
-       // TODO: Make a post request to get the value for a group of tickers leftover in tickersToAdd
+    tickerList.s&p500.forEach((ticker) => { // add all the tickers into the array
+        tickersToAdd.push(ticker);
+        if ( tickersToAdd.length === 6) {   // when the number of tickers in the array reaches 6, call the api function
+            req.body.tickers =
+                [
+                    tickersToAdd[0],
+                    tickersToAdd[1],
+                    tickersToAdd[2],
+                    tickersToAdd[3],
+                    tickersToAdd[4],
+                    tickersToAdd[5]
+                ];
+            res = getManyTickers(req, undefined);
+            if(res.statusCode === 500) return res;
+            tickersToAdd.length = 0;
+        }
     });
+
+    // call an api function for the remaining tickers
+    req.body.tickers = [];
+    tickersToAdd.forEach((ticker) => {
+        req.body.tickers.push(ticker);
+    })
+    res = getManyTickers(req, undefined);
+    return res;
 }
 
 

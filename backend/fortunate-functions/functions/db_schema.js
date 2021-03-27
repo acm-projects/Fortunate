@@ -50,6 +50,13 @@ let db_schema =
 
     tickers :
     {
+        "supportedTickers" : 
+        {
+            "s&p500" : [
+                "{symbol}",
+                // ...
+            ]
+        },
         "{symbol}" :
         {
             dataGranularity : "1m",   // Could have values of [1m, 5m, 15m, 1d, 1wk, 1mo]
