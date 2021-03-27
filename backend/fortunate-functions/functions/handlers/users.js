@@ -262,6 +262,7 @@ exports.dayValue = async (req, res) => {
         let value = await calculateUserValue(data.data().portfolio);
         let date = new Date();
         date.setHours(0,0,0,0);
+        date = date.toDateString();
         await data.ref.collection('value').doc(date).set({end: value});
         return res.status(200).json({value : value});
     }).catch((error) => {
