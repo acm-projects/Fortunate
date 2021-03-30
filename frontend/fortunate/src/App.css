@@ -4,7 +4,6 @@ body {
 		"Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
 		"Helvetica Neue", sans-serif;
 }
-
 .container{
   margin: 80px auto 0 auto;
   max-width: 1200px;
@@ -165,8 +164,8 @@ a:hover, a:visited, a:link, a:active
 
 .PortfolioBox {
 	font-family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif";
-	background-color:'black'; 
-	height:'414px'; 
+	background-color:'black';
+	height:'414px';
 	color:'#666';
   }
 
@@ -174,5 +173,3 @@ code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 		monospace;
 }
-
-

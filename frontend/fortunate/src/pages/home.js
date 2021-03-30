@@ -1,12 +1,5 @@
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-
 import Buffer from "../components/Buffer";
 import TopButton from "../components/TopButton";
-
-// Material UI
-import Box from "@material-ui/core/Box";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
 
 import AppIcon from "../images/fortunatelogo.png";
 
@@ -96,7 +89,11 @@ const Home = () => {
 										torquent per conubia nostra, per
 										inceptos himenaeos. Curabitur sodales
 										ligula in libero. Sed dignissim lacinia
-										nunc.{" "}
+										dictionary.{" "}
+										<a href="/dictionary" target="_blank">
+											{" "}
+											dic{" "}
+										</a>{" "}
 									</p>
 								</div>
 								<Buffer />

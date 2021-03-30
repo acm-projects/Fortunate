@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import Link from "react-router-dom/Link";
 
-// Material UI
-import AppBar from "@material-ui/core/AppBar";
-import Button from "@material-ui/core/Button";
-import Toolbar from "@material-ui/core/Toolbar";
+/*import React, { Component } from 'react';
+import Link from 'react-router-dom/Link';
+// material ui stuff
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
 
 class Navbar extends Component {
 	render() {
@@ -27,3 +29,4 @@ class Navbar extends Component {
 }
 
 export default Navbar;
+*/

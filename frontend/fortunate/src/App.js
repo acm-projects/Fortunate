@@ -13,6 +13,7 @@ import login from "./pages/login";
 import signup from "./pages/signup";
 import home from "./pages/home";
 import portfolio from "./pages/portfolio";
+import dictionary from "./pages/dictionary";
 
 // TODO: Authenticate Log-in with jwt-decode and AuthRoute
 
@@ -36,6 +37,11 @@ class App extends Component {
 								exact
 								path="/portfolio"
 								component={portfolio}
+							/>
+							<Route
+								exact
+								path="/dictionary"
+								component={dictionary}
 							/>
 						</Switch>
 					</div>
