@@ -4,7 +4,11 @@ const firebase = require("firebase");
 firebase.initializeApp(config);
 
 const { validateLoginData, validateSignUpData } = require("../util/validators");
+const { user } = require("firebase-functions/lib/providers/auth");
 
+const db = require('../util/admin').admin.firestore();
+
+// const FBAuth = require('../util/fbauth');
 // Handles log-in requests
 exports.login = (request, response) => {
 	const user = {
@@ -37,7 +41,6 @@ exports.login = (request, response) => {
 };
 
 exports.signup = (req, res) => {
-	const db = require('../util/admin').admin.firestore();
 	const newUser = {
         email: req.body.email,
         username: req.body.username,
@@ -75,3 +78,195 @@ exports.signup = (req, res) => {
         return res.status(500).json({error: error.code}); 
     })
 }
+
+exports.getAuthUser = (req, res) => {
+    let userData = {};
+
+    // Make sure user exists
+    db.doc(`users/${req.user.username}`).get().then((doc) => {
+        if(doc.exists) {
+            userData.credentials = doc.data();
+            //return db.collection('userdata').where('username', '==', req.user.username).get();
+            return db.collection('userdata').doc(req.user.username).get();
+        }
+    }).then((data) => {
+
+        // Return user data
+        console.log("Data:\n" + data.data());
+        userData.portfolio = data.data().portfolio;
+        return res.json(userData);
+    }).catch((error) => {
+        console.error(error);
+        return res.status(500).json({error: error.code});
+    });
+};
+
+async function getStockPrice(ticker) {
+    // TODO: GET STOCK PRICE FROM DATABASE
+    let ret = -1;
+    await db.doc(`tickers/${ticker}`).get().then(doc => {
+        if (doc.exists) {
+            let data = doc.data();
+            let timestamp = ~~(Date.now() / 1000) - 86400;
+            timestamp = Math.round(timestamp / 60) * 60;
+            //timestamp = 1615581420;
+            console.log('Timestamp: ' + timestamp);
+            if (!(timestamp < data.timestamp[0] || timestamp > data.timestamp[389])) {
+                price = data.indicators.open[data.timestamp.indexOf(timestamp)];
+                console.log("price: " + price);
+                ret = price;
+            }
+        }
+    });
+    console.log(ret);
+    return ret;
+}
+
+exports.trade = async (req,res) => {
+
+    /*
+     * req format: 
+     * {
+     *      type = "buy/sell"
+     *      symbol = "TICKER",
+     *      quantity = 123     
+     * }
+     */
+
+    // TODO: VALIDATE TRADE TIME
+    // TODO: GET STOCK INFORMATION FROM DATABASE
+    var price = await getStockPrice(req.body.symbol);
+    price = ~~(price * 100) / 100;
+    console.log("Price: " + price);
+    if(price == -1) {
+        return res.status(400).json({error : "Can't order at this time."});
+    }
+    let userport = {};
+    let userref;
+
+    let transaction = {};
+    transaction.price = price;
+    transaction.quantity = req.body.quantity;
+    transaction.timestamp = new Date().toISOString();
+    // Determine which user is sending the request
+    db.doc(`users/${req.user.username}`).get().then((doc) => {
+        if(doc.exists) {
+            userref = db.collection('userdata').doc(req.user.username);
+            return userref.get();
+        }
+    }).then(async (data) => {
+
+        // Get the users portfolio information
+        userport = data.data().portfolio;
+
+        // Variables for where the location of the data will be
+        var path = 'portfolio.securities.' + req.body.symbol;
+        var quantity = req.body.quantity;
+        
+        // Handle different request type: BUY or SELL
+        if(req.body.type === "buy") {
+            transaction.type = 'buy';
+            // Make sure the user has enough money to purchase
+            if(price * req.body.quantity > userport.cash) {
+                return res.status(400).json({error: "Not Enough Cash"});
+            }
+            // If they have enough money, buy the stock (update database)
+            // If the user already owns shares, update the shares
+            if(req.body.symbol in userport.securities) {
+                //console.log(userport.securities[req.body.symbol][price]);
+                quantity += userport.securities[req.body.symbol];
+            }
+
+            var updatehelper = {
+                'portfolio.cash' : userport.cash - price * req.body.quantity,
+                [path] : quantity
+            };
+            userref.update(updatehelper);
+        } else if(req.body.type === "sell") {
+            transaction.type = 'sell';
+            // Verify that the user actually owns shares
+            if(!(req.body.symbol in userport.securities)) {
+                return res.status(400).json({error: "No shares owned"});
+            }
+            // If they have enough shares, sell the stock (update database)
+            if(req.body.quantity > userport.securities[req.body.symbol]) {
+                return res.status(400).json({error: "Not Enough Shares"});
+            }
+            quantity = userport.securities[req.body.symbol] - req.body.quantity;
+
+            if(quantity === 0) {
+                quantity = require('../util/admin').admin.firestore.FieldValue.delete();
+            }
+
+            var updatehelper = {
+                'portfolio.cash' : userport.cash + price * req.body.quantity,
+                [path] : quantity
+            };
+            userref.update(updatehelper);
+        } else {
+            return res.status(400).json({error: "invalid trade type"});
+        }
+        
+        // Placeholder return
+        const tres = await data.ref.collection('transactions').add(transaction);
+        return res.json({Success : `Transaction succeeded with id: ${tres.id}`});
+    }).catch((error) => {
+        console.error(error);
+        return res.status(500).json({error: error.code});
+    });
+    // TODO: VALIDATE ORDER
+    // TODO: PROCESS ORDER
+}
+
+async function getValueAt(ticker, timestamp) {
+    let ret = -1;
+    await db.doc(`tickers/${ticker}`).get().then(doc => {
+        if (doc.exists) {
+            let data = doc.data();
+            console.log('Timestamp: ' + timestamp);
+            if (!(timestamp < data.timestamp[0] || timestamp > data.timestamp[389])) {
+                price = data.indicators.open[data.timestamp.indexOf(timestamp)];
+                console.log("price: " + price);
+                ret = price;
+            }
+        }
+    });
+    console.log(ret);
+    return ret;
+}
+
+// Calculate a user's portfolio value
+async function calculateUserValue(portfolio) {
+    let value = portfolio.cash;
+    console.log('Starting value: ' + value);
+    const securities = Object.keys(portfolio.securities);
+    console.log(securities);
+    //let timestamp = new Date().setHours(20, 59, 0, 0) / 1000;
+    let timestamp = 1615582740;
+    for(const s of securities) {
+        let v = await getValueAt(s, timestamp);
+        console.log('portfolio.securities[s]: ' + portfolio.securities[s]);
+        value += portfolio.securities[s] * v;
+    }
+    console.log(value);
+    return value;
+}
+
+exports.dayValue = async (req, res) => {
+    db.doc(`users/${req.user.username}`).get().then((doc) => {
+        if(!doc.exists) {
+            //return res.status(400).json({error: 'User does not exist'})
+        }
+        return db.collection('userdata').doc(req.user.username).get();
+    }).then(async (data) => {
+        let value = await calculateUserValue(data.data().portfolio);
+        let date = new Date();
+        date.setHours(0,0,0,0);
+        date = date.toDateString();
+        await data.ref.collection('value').doc(date).set({end: value});
+        return res.status(200).json({value : value});
+    }).catch((error) => {
+        console.error(error);
+        return res.status(500).json({error: error});
+    });
+};
