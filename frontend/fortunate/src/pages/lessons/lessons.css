@@ -1,0 +1,22 @@
+h3 {
+	color: gold;
+	font-family: "Spartan", sans-serif;
+	font-size: 30px;
+	margin-bottom: 0;
+	margin-inline: 20vw;
+	margin-top: 2.5em;
+	text-align: left;
+	text-shadow: 3px 3px 1px black;
+}
+
+p {
+	color: gainsboro;
+	font-size: 20px;
+	margin-block: 1em;
+	margin-inline: 20vw;
+	text-align: left;
+}
+
+.buffer {
+	margin-bottom: 5rem;
+}

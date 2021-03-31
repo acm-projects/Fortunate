@@ -52,7 +52,7 @@ const Footer = () => {
 									</a>
 								</Grid>
 								<Grid item xs={1}>
-									<a href="#lessons">
+									<a href="/learn/intro">
 										<Button text="Courses" />
 									</a>
 								</Grid>

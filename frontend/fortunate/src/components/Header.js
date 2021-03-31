@@ -269,7 +269,7 @@ export default function Header() {
 									</a>
 								</Grid>
 								<Grid item>
-									<a href="#lessons">
+									<a href="/learn/intro">
 										<Button text="Courses" />
 									</a>
 								</Grid>

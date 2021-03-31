@@ -98,9 +98,8 @@ const Home = () => {
 										ligula in libero. Sed dignissim lacinia
 										dictionary.{" "}
 										<a href="/dictionary" target="_blank">
-											{" "}
-											dic{" "}
-										</a>{" "}
+											dic
+										</a>
 									</p>
 								</div>
 								<Buffer />
