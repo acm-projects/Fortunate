@@ -1,23 +1,21 @@
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
-const TopButton = ({text, width, onClick}) => {
-
-    return (
-            <topbutton style={{width: width}} className ='topbutton'>{text}</topbutton>
-
-    )
-
-
-}
+const TopButton = ({ color, text, width, onClick }) => {
+	return (
+		<topbutton style={{ width: width, color: color }} className="topbutton">
+			{text}
+		</topbutton>
+	);
+};
 
 TopButton.defaultProps = {
-    color: '#c2bc91'
-}
+	color: "gainsboro",
+};
 
 TopButton.propTypes = {
-    text: PropTypes.string,
-    color: PropTypes.string,
-    onClick: PropTypes.func,
-}
+	text: PropTypes.string,
+	color: PropTypes.string,
+	onClick: PropTypes.func,
+};
 
-export default TopButton
+export default TopButton;

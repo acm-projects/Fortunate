@@ -1,12 +1,9 @@
 const Buffer = () => {
-    return (
-        <buffer className='Buffer'>
-<p>
+	return (
+		<buffer className="Buffer">
+			<p className="BodyText"></p>
+		</buffer>
+	);
+};
 
-</p>
-          
-        </buffer>
-    )
-}
-
-export default Buffer
+export default Buffer;

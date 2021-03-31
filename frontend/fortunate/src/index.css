@@ -13,6 +13,10 @@ html {
   background-color: #2d313a;
 }
 
+.GrayPaper {
+  background-color: grey;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -85,7 +89,7 @@ h2 {
   text-shadow: 3px 3px 1px black;
   color: gold;
 }
-p {
+.BodyText {
   font-size: 40px;
   margin-left: auto;
   margin-right: auto;
@@ -102,6 +106,13 @@ p {
   display: flex;
   justify-content: center;
 }
+
+.PortfolioBox {
+	font-family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif";
+	background-color:'black'; 
+	height:'414px'; 
+	color:'#666';
+  }
 
 .topbutton {
   color: gainsboro;
