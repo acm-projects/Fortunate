@@ -1,5 +1,5 @@
 module.exports = {
-	apiKey: "AIzaSyAtiJa9d7fRcYNt7d6COn9NMC9QlLWQ4BI",
+	apiKey: "f1d69d8c8fmsh5da8c4c7bf8cb18p10d613jsnc087bbb37297",
 	authDomain: "fortunate-acm.firebaseapp.com",
 	projectId: "fortunate-acm",
 	storageBucket: "fortunate-acm.appspot.com",

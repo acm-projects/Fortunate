@@ -9,6 +9,9 @@ const { user } = require("firebase-functions/lib/providers/auth");
 const db = require('../util/admin').admin.firestore();
 
 // const FBAuth = require('../util/fbauth');
+const { getTickerList } = require('../util/helper');
+const { getManyTickers } = require('../util/yahooapi');
+
 // Handles log-in requests
 exports.login = (request, response) => {
 	const user = {
@@ -285,3 +288,60 @@ exports.dayValue = async (req, res) => {
         return res.status(500).json({error: error});
     });
 };
+
+
+
+
+/**
+ * Updates all database ticker values for the supported symbols
+ */
+ exports.updateTickers = async (req, res) => {
+    const tickerList = await getTickerList();    // The list of all supported stocks 
+    
+    tickersToAdd = [];
+    tickerList.forEach((ticker) => { // add all the tickers into the array
+        tickersToAdd.push(ticker);
+        if ( tickersToAdd.length === 6) {   // when the number of tickers in the array reaches 6, call the api function
+            req.body.tickers =
+                [
+                    tickersToAdd[0],
+                    tickersToAdd[1],
+                    tickersToAdd[2],
+                    tickersToAdd[3],
+                    tickersToAdd[4],
+                    tickersToAdd[5]
+                ];
+            getManyTickers(req, res);
+            if(res.statusCode === 500) return res.json({error: "Error"});
+            tickersToAdd.length = 0;
+        }
+    });
+
+    // call an api function for the remaining tickers
+    req.body.tickers = [];
+    tickersToAdd.forEach((ticker) => {
+        req.body.tickers.push(ticker);
+    })
+    getManyTickers(req, res);
+    return res.json({success: 'Supported tickers have been updated'});
+}
+
+
+/**
+ * @returns Quote info
+ * 
+ * Request format:
+ * {
+ *      symbol : "{symbol}"
+ * }
+ */
+exports.getQuoteInfo = (req, res) => {
+    const doc = db.collection('ticker').doc(req.body.symbol).get(); // get the document ref from database
+
+    if ( !doc.exists ) { // if document DOESN't exist
+        return res.status(400).json({ error: `${req.body.symbol} is not supported`});
+    }
+    else { // if document DOES exist
+        return res.status(200).json(doc.data())
+    }
+}
