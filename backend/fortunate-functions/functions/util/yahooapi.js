@@ -169,7 +169,7 @@ exports.getQuotes = (req, res) => {
             "x-rapidapi-key": API_KEY,
             "x-rapidapi-host": "yahoo-finance-low-latency.p.rapidapi.com",
             "useQueryString": true
-        }).end((result) => {
+        }).end( async (result) => {
             if (result.error) throw new Error(result.error);
             
             const batch = db.batch(); //create the batch for commit
@@ -209,10 +209,10 @@ exports.getQuotes = (req, res) => {
 
             await batch.commit() //commit the batch
             .then(() => {
-                return res.status(201).json({success: 'Intraday values of passed tickers with an interval of 1 minute are saved to the database'});
+                return res.status(201);
             }).catch(error => {
                 console.error(error);
-                return res.status(500).json({error: error.code}); 
+                return res.status(500);
             })
         });
 }

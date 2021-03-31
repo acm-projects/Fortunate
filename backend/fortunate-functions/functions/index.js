@@ -10,8 +10,8 @@ app.post("/signup", signup);
 app.get("/get-quote-info", getQuoteInfo);
 
 // API routs 
-app.post("/market-summary", getMarketSummary);
-app.post("/get-quotes", getQuotes);
+// app.post("/market-summary", getMarketSummary); // not currently used but could be usuful in future
+// app.post("/get-quotes", getQuotes); // not currently used but could be usuful in future
 app.post("/update-tickers", updateTickers);
 
 

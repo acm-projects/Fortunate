@@ -86,11 +86,11 @@ exports.signup = (req, res) => {
 /**
  * Updates all database ticker values for the supported symbols
  */
- exports.updateTickers = (req, res) => {
-    const tickerList =  getTickerList();    // The list of all supported stocks 
+ exports.updateTickers = async (req, res) => {
+    const tickerList = await getTickerList();    // The list of all supported stocks 
     
     tickersToAdd = [];
-    tickerList.s&p500.forEach((ticker) => { // add all the tickers into the array
+    tickerList.forEach((ticker) => { // add all the tickers into the array
         tickersToAdd.push(ticker);
         if ( tickersToAdd.length === 6) {   // when the number of tickers in the array reaches 6, call the api function
             req.body.tickers =
@@ -102,8 +102,8 @@ exports.signup = (req, res) => {
                     tickersToAdd[4],
                     tickersToAdd[5]
                 ];
-            res = getManyTickers(req, undefined);
-            if(res.statusCode === 500) return res;
+            getManyTickers(req, res);
+            if(res.statusCode === 500) return res.json({error: "Error"});
             tickersToAdd.length = 0;
         }
     });
@@ -113,8 +113,8 @@ exports.signup = (req, res) => {
     tickersToAdd.forEach((ticker) => {
         req.body.tickers.push(ticker);
     })
-    res = getManyTickers(req, undefined);
-    return res;
+    getManyTickers(req, res);
+    return res.json({success: 'Supported tickers have been updated'});
 }
 
 
