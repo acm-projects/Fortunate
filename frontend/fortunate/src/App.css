@@ -4,21 +4,21 @@ body {
 		"Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
 		"Helvetica Neue", sans-serif;
 }
-.container{
-  margin: 80px auto 0 auto;
-  max-width: 1200px;
-  color: gold;
+.container {
+	margin: 80px auto 0 auto;
+	max-width: 1200px;
+	color: gold;
 }
 .nav-container {
-margin-left: auto;
-  color: inherit; /* color of text white */
+	margin-left: auto;
+	color: inherit; /* color of text white */
 }
-.nav-container:hover{
-  background: pink;
-/*  border:blue;*/
+.nav-container:hover {
+	background: pink;
+	/*  border:blue;*/
 }
- html {
-  background-color: #2d313a;
+html {
+	background-color: #2d313a;
 }
 
 body {
@@ -112,7 +112,6 @@ h2 {
 	color: gold;
 }
 
-
 .BodyText {
 	font-size: 40px;
 	margin-left: auto;
@@ -130,9 +129,11 @@ h2 {
 	justify-content: center;
 }
 
-a:hover, a:visited, a:link, a:active
-{
-    text-decoration: none;
+a:hover,
+a:visited,
+a:link,
+a:active {
+	text-decoration: none;
 }
 .topbutton {
 	color: gainsboro;
@@ -164,12 +165,33 @@ a:hover, a:visited, a:link, a:active
 
 .PortfolioBox {
 	font-family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif";
-	background-color:'black';
-	height:'414px';
-	color:'#666';
-  }
+	background-color: "black";
+	height: "414px";
+	color: "#666";
+}
 
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 		monospace;
+}
+
+ul {
+	margin-inline: 15vw;
+}
+
+li {
+	font-size: 20px;
+	margin-bottom: 0.5em;
+}
+
+a:link {
+	color: gold;
+}
+
+a:visited {
+	color: gold;
+}
+
+a:hover {
+	text-decoration: underline;
 }

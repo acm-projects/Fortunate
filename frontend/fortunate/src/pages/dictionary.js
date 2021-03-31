@@ -3,24 +3,24 @@ import { wordsList } from "./wordsList";
 
 class dictionary extends Component {
 	render() {
+		// Sort definitiions alphabetically by term
+		wordsList.sort((a, b) => a.term.localeCompare(b.term));
+
 		return (
 			<div>
 				<h1 style={{ color: "gold" }}>Dictionary</h1>
-				<ul>
+				<ul style={{ color: "white" }}>
 					{wordsList.map((item, index) => {
 						return (
 							<li key={index}>
-								<div>
-									<b style={{ color: "gold" }}>
-										{" "}
-										<i> {item.word}</i>
-									</b>
-									<i style={{ color: "white" }}>
-										{" "}
-										{" : "}
-										{item.meaning}{" "}
-									</i>
-								</div>
+								{/* TODO: Remove parenthesis from section reference name*/}
+								<a name={item.term.toLowerCase()} />
+								<i style={{ color: "gold" }}>
+									<b>{item.term}</b>
+								</i>
+								<i style={{ color: "white" }}>
+									{" : " + item.definition}
+								</i>
 							</li>
 						);
 					})}
