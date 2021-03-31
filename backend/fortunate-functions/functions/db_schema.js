@@ -42,6 +42,16 @@ let db_schema =
                 },
 
                 //... transaction IDs
+            },
+            endofday :
+            {
+                "[timestamp]" : 
+                {
+                    start : 12345,
+                    end   : 123456
+                }
+
+                //... timestamps
             }
         }
 
