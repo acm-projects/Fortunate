@@ -21,7 +21,6 @@ app.post("/update-tickers", updateTickers);
 
 
 app.post("/trade", FBAuth, trade);
-app.post("/ticker", getTicker);
 
 app.get("/user", FBAuth, getAuthUser);
 app.get("/value", FBAuth, dayValue);
