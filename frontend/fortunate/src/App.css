@@ -55,6 +55,11 @@ body {
 	font-size: 15px;
 	font-family: inherit;
 }
+
+.home {
+	background-color: #70A851;
+}
+
 .logo {
 	font-size: 40px;
 	margin: 0;

@@ -7,13 +7,12 @@ import TopButton from "../components/TopButton";
 import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-
-import AppIcon from "../images/fortunatelogo.png";
+import AppIcon from "../images/Fortunate_Logo.svg";
 
 const Home = () => {
 	return (
-		<home>
-			<Grid container>
+		<home >
+			<Grid container className="home">
 				<Grid item xs={12}>
 					<Box width="100%">
 						<Box paddingTop={4}>

@@ -222,40 +222,6 @@ export default function Header() {
 							</Grid>
 						</Grid>
 
-						<Grid item>
-							<Grid container alignItems="center">
-								<IconButton
-									edge="start"
-									className={classes.menuButton}
-									color="inherit"
-									aria-label="open drawer"
-								>
-									<MenuIcon />
-								</IconButton>
-
-								<Typography
-									className={classes.title}
-									variant="h6"
-									noWrap
-								>
-									<h1 className="logo">Fortunate</h1>
-								</Typography>
-								<div className={classes.search}>
-									<div className={classes.searchIcon}>
-										<SearchIcon />
-									</div>
-									<InputBase
-										placeholder="Search…"
-										classes={{
-											root: classes.inputRoot,
-											input: classes.inputInput,
-										}}
-										inputProps={{ "aria-label": "search" }}
-									/>
-								</div>
-							</Grid>
-						</Grid>
-
 						<Grid item xs={7}>
 							<Grid container justify="space-around">
 								<Grid item>
