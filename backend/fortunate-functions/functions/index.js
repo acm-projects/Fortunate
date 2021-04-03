@@ -6,7 +6,7 @@ const { login, signup, trade, getAuthUser, dayValue, getQuoteInfo, updateTickers
 
 const {FBAuth} = require('./util/fbauth');
 
-const { getMarketSummary, getQuotes } = require("./util/yahooapi");
+const { getMarketSummary, getQuotes, getOneTicker } = require("./util/yahooapi");
 
 // Users Routes
 app.post("/login", login);
@@ -16,7 +16,7 @@ app.get("/get-quote-info", getQuoteInfo);
 // API routs 
 // app.post("/market-summary", getMarketSummary);   // not currently used but could be usuful in future
 // app.post("/get-quotes", getQuotes);              // not currently used but could be usuful in future
-app.post("/update-tickers", updateTickers);
+app.post("/update-ticker", getOneTicker);           // to manualy update one ticker
 
 
 

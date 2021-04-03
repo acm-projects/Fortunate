@@ -295,10 +295,12 @@ exports.dayValue = async (req, res) => {
 /**
  * Updates all database ticker values for the supported symbols
  */
- exports.updateTickers = async (req, res) => {
+ exports.updateTickers = async () => {
     const tickerList = await getTickerList();    // The list of all supported stocks 
     
     tickersToAdd = [];
+    let req = { body: {}};
+    let res;
     tickerList.forEach((ticker) => { // add all the tickers into the array
         tickersToAdd.push(ticker);
         if ( tickersToAdd.length === 6) {   // when the number of tickers in the array reaches 6, call the api function
@@ -312,7 +314,7 @@ exports.dayValue = async (req, res) => {
                     tickersToAdd[5]
                 ];
             getManyTickers(req, res);
-            if(res.statusCode === 500) return res.json({error: "Error"});
+            if(res.error === true) throw new Error("Error in looped ticker API call");
             tickersToAdd.length = 0;
         }
     });
@@ -323,7 +325,8 @@ exports.dayValue = async (req, res) => {
         req.body.tickers.push(ticker);
     })
     getManyTickers(req, res);
-    return res.json({success: 'Supported tickers have been updated'});
+    if(res.error === true) throw new Error("Error in last ticker API call");
+    return {success: 'Supported tickers have been updated'};
 }
 
 
@@ -338,7 +341,7 @@ exports.dayValue = async (req, res) => {
 exports.getQuoteInfo = (req, res) => {
     const doc = db.collection('ticker').doc(req.body.symbol).get(); // get the document ref from database
 
-    if ( !doc.exists ) { // if document DOESN't exist
+    if ( !doc.exists ) { // if document DOES NOT exist
         return res.status(400).json({ error: `${req.body.symbol} is not supported`});
     }
     else { // if document DOES exist
