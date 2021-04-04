@@ -8,16 +8,24 @@ import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import AppIcon from "../images/Fortunate_Logo.svg";
+import withStyles from "@material-ui/core/styles/withStyles";
+import { makeStyles } from "@material-ui/core/styles";
+
+
+const useStyles = makeStyles({
+	root: {borderLeft:0, borderTop:5, borderBottom:5, borderRight:0,  borderColor: "#70A851", square:true, variant:"outlined" }
+});
 
 const Home = () => {
+	const classes = useStyles();
 	return (
-		<home >
+		<home>
 			<Grid container className="home">
 				<Grid item xs={12}>
 					<Box width="100%">
 						<Box paddingTop={4}>
-							<Paper elevation={20}>
-								<Box paddingTop={1}>
+							<Paper elevation={20} className={classes.root}>
+								<Box paddingTop={1} borderTop={3} borderColor="#70A851">
 									<div id="top">
 										<h1>Fortunate</h1>
 										<h2>Slogan</h2>
@@ -51,7 +59,7 @@ const Home = () => {
 				<Grid item xs={12}>
 					<Box width="100%">
 						<Paper elevation={20}>
-							<Box paddingTop={1}>
+							<Box paddingTop={1} borderTop={3} borderColor="#70A851">
 								<h2>How Does Fortunate Work?</h2>
 								<Buffer />
 								<div className="separatecenter">
@@ -76,7 +84,7 @@ const Home = () => {
 				<Grid>
 					<Box Box width="100%">
 						<Paper elevation={20}>
-							<Box paddingTop={1}>
+							<Box paddingTop={1} borderTop={3} borderColor="#70A851">
 								<div id="lessons">
 									<h2>Lessons</h2>
 								</div>
@@ -116,7 +124,7 @@ const Home = () => {
 				<Grid>
 					<Box Box width="100%">
 						<Paper elevation={20}>
-							<Box paddingTop={1}>
+							<Box paddingTop={1} borderTop={3} borderColor="#70A851">
 								<div id="VM">
 									<h2>Virtual Market</h2>
 								</div>
@@ -155,7 +163,7 @@ const Home = () => {
 				<Grid>
 					<Box Box width="100%">
 						<Paper elevation={20}>
-							<Box paddingTop={1}>
+							<Box paddingTop={1} borderTop={3} borderColor="#70A851">
 								<h2>
 									No Investment Advice / Investment Risks
 									Disclaimer
