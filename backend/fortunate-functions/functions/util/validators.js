@@ -29,7 +29,6 @@ exports.validateLoginData = user => {
 // Checks if the given new user credential strings are non-empty and valid, if not, passes the appropriate errors
 exports.validateSignUpData = user => {
 	let errors = {};
-
 	if (isEmpty(user.username)) errors.username = "Field must not be empty";
 	if (isEmpty(user.email)) errors.email = "Field must not be empty";
 	else if (!isEmail(user.email))
@@ -37,7 +36,6 @@ exports.validateSignUpData = user => {
 	if (isEmpty(user.password)) errors.password = "Field must not be empty";
 	else if (user.password !== user.confirmPassword)
 		errors.confirmPassword = "Passwords do not match";
-
 	return {
 		valid: Object.keys(errors).length === 0,
 		errors,

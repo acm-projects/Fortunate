@@ -273,9 +273,17 @@ async function calculateUserValue(portfolio) {
     console.log(securities);
 
     // Get value at end of day
-    let timestamp = new Date().setHours(20, 59, 0, 0) / 1000;
+    let timestamp = new Date();
+    //timestamp.getDay()
+    
+    if(timestamp.getDay() === 0) {
+        timestamp = timestamp - ( 86400000 * 2 );
+    } else if(timestamp.getDay() === 6) {
+        timestamp = timestamp - 86400000;
+    }
     //let timestamp = 1615582740;
-
+    timestamp = timestamp.setHours(20, 59, 0, 0);
+    timestamp = timestamp / 1000;
     // Calculate value of the securities
     for(const s of securities) {
         let v = await getValueAt(s, timestamp);
@@ -300,7 +308,9 @@ exports.dayValue = async (req, res) => {
         // Add entry into the database, named the current day. **THIS MAY CHANGE** may change this to a timestamp
         let date = new Date();
         date.setHours(0,0,0,0);
-        date = date.toDateString();
+        date = date / 1000;
+        date = '' + date;
+        //date = date.toDateString();
         await data.ref.collection('value').doc(date).set({end: value});
         return res.status(200).json({value : value});
     }).catch((error) => {
@@ -364,5 +374,90 @@ exports.getQuoteInfo = (req, res) => {
 }
 
 // TODO: Transction hisory
+/* Returns:
+ * {
+ *      <transaction ID> : {
+ *          price: <price>,
+ *          quantity: <quantity>,
+ *          timestamp: <timestamp ISO string>
+ *          type: <buy/sell>
+ *      }
+ * }
+ */
+exports.getTransactions = (req, res) => {
+    db.collection('userdata').doc(req.user.username).get().then(data => {
+        // Makes sure the user exists
+        if( !data.exists ) {
+            return res.status(400).json({error: 'User not found'});
+        }
+        return data.ref.collection('transactions').get();
+    }).then(data => {
+        // Get transactions
+        var tr =  {};
+        data.forEach(doc => {
+            tr[doc.id] = doc.data();
+        });
+        return res.status(200).json(tr);
+    }).catch(error => {
+        console.error(error);
+        return res.status(500).json({error:error});
+    });
+}
 // TODO: Account Value break down
+/* Returns:
+ * {
+ *    cashValue: <cash>,
+ *    cashF: <float>, # This is a %
+ *    stockF: <float> # This is a %
+ * }
+ * 
+ */
+exports.getAccBD = async (req, res) => {
+    db.collection('userdata').doc(req.user.username).get().then(async (data) =>  {
+        if( !data.exists ) {
+            return res.status(400).json({error: 'User not found'});
+        }
+        const portfolio = data.data().portfolio;
+        var value = portfolio.cash;
+        var stockValue = await calculateUserValue(portfolio);
+        var total = value + stockValue;
+        return res.status(200).json({
+            cashValue : total,
+            cashF : value / total,
+            stockF : stockValue / total
+        });
+    }).catch(error => {
+        console.error(error);
+        return res.status(500).json({
+            error: error
+        });
+    });
+}
+
 // TODO: Account value history
+/* Returns
+ * {
+ *      <timestamp> : <value>,  # Timestamp ex: 1617771600
+ *      <timestamp> : <value>,
+ *      ...
+ * }
+ */
+exports.getValueHistory = (req, res) => {
+    db.collection('userdata').doc(req.user.username).get().then(data => {
+        // Check if user exists
+        if( !data.exists ) {
+            return res.status(400).json({error: 'User not found'})
+        }
+        return data.ref.collection('value').get();
+    }).then(data => {
+        // Get Values
+        var tr =  {};
+        data.forEach(doc => {
+            tr[doc.id] = doc.data()['end'];
+        });
+        return res.status(200).json(tr);
+    }).catch(error => {
+        console.error(error);
+        return res.status(500).json({error:error});
+    });
+}
