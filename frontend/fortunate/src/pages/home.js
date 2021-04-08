@@ -96,7 +96,7 @@ const Home = () => {
 										torquent per conubia nostra, per
 										inceptos himenaeos. Curabitur sodales
 										ligula in libero. Sed dignissim lacinia
-										dictionary.{" "}
+										Dictionary.{" "}
 										<a href="/dictionary" target="_blank">
 											dic
 										</a>
@@ -136,7 +136,10 @@ const Home = () => {
 										torquent per conubia nostra, per
 										inceptos himenaeos. Curabitur sodales
 										ligula in libero. Sed dignissim lacinia
-										nunc.{" "}
+										nunc. Stock look up page{" "}
+											<a href="/vmpage" target="_blank">
+												page
+											</a>
 									</p>
 								</div>
 								<Buffer />
