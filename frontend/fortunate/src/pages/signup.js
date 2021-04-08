@@ -12,7 +12,7 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 
-import AppIcon from "../images/fortunatelogo.png";
+import AppIcon from "../images/Fortunate_Logo.svg";
 
 const styles = {
 	form: {
