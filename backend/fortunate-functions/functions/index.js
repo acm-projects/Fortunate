@@ -3,9 +3,7 @@ const { user } = require("firebase-functions/lib/providers/auth");
 const app = require("express")();
 
 const { login, signup, trade, getAuthUser, dayValue, getQuoteInfo, updateTickers } = require("./handlers/users");
-
 const {FBAuth} = require('./util/fbauth');
-
 const { getMarketSummary, getQuotes, getOneTicker } = require("./util/yahooapi");
 
 // Users Routes
@@ -24,5 +22,11 @@ app.post("/trade", FBAuth, trade);
 
 app.get("/user", FBAuth, getAuthUser);
 app.get("/value", FBAuth, dayValue);
+
+// Scheduled task
+exports.scheduledFunction = functions.pubsub.schedule('0 16 * * 1-5')
+    .timeZone('America/New_York')
+    .onRun(updateTickers);
+
 
 exports.api = functions.https.onRequest(app);
