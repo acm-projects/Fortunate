@@ -15,6 +15,7 @@ import home from "./pages/home";
 import portfolio from "./pages/portfolio";
 import dictionary from "./pages/dictionary";
 import introduction from "./pages/lessons/introduction";
+import vmpage from "./pages/stockPage/vmpage"
 
 // TODO: Authenticate Log-in with jwt-decode and AuthRoute
 
@@ -49,6 +50,7 @@ class App extends Component {
 								path="/learn/intro"
 								component={introduction}
 							/>
+							<Route exact path="/vmpage" component={vmpage} />
 						</Switch>
 					</div>
 					<Footer />

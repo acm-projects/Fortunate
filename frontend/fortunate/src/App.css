@@ -1,4 +1,4 @@
-html,
+/*html,
 body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
 		"Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
@@ -12,11 +12,14 @@ body {
 .nav-container {
 	margin-left: auto;
 	color: inherit; /* color of text white */
+
+/*
 }
 .nav-container:hover {
 	background: pink;
 	/*  border:blue;*/
-}
+/*
+}*/
 html {
 	background-color: #2d313a;
 }
@@ -55,6 +58,7 @@ body {
 	font-size: 15px;
 	font-family: inherit;
 }
+
 .logo {
 	font-size: 40px;
 	margin: 0;
