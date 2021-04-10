@@ -80,9 +80,9 @@ exports.getQuotes = (req, res) => {
  * Stored in:
  *      Collection: "tickers"
  *      Doc: name of the symbol
- * 
- * Request body:
- * {
+ * @param req
+ * @param res
+ * req = body : {
  *     "ticker": "stock_symbol"
  * }
  */ 
@@ -131,12 +131,10 @@ exports.getQuotes = (req, res) => {
 
 /**
  * Store the intraday values for a multiple number of stocks with an interval of 1 minute to the database
- * Stored in:
- *      Collection: "tickers"
- *      Doc: name of the symbol
- * 
- * Request body:
- * {
+ * @param req
+ * @param res
+ * res = {any}
+ * req = body : {
  *     "tickers": 
  *      [
  *          {symbol_1},
@@ -147,6 +145,10 @@ exports.getQuotes = (req, res) => {
  *          {symbol_6}
  *      ]
  * }
+ * Stored in:
+ *      Collection: "tickers"
+ *      Doc: name of the symbol
+ * 
  */ 
  exports.getManyTickers = (req, res) => {
     if(req.body.tickers === undefined) throw new Error("No tickers entered.");
@@ -209,10 +211,12 @@ exports.getQuotes = (req, res) => {
 
             await batch.commit() //commit the batch
             .then(() => {
-                return res.status(201);
+                res.error = false;
+                return;
             }).catch(error => {
                 console.error(error);
-                return res.status(500);
+                res.error = true;
+                return;
             })
         });
 }
