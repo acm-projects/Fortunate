@@ -220,3 +220,8 @@ exports.getQuotes = (req, res) => {
             })
         });
 }
+
+exports.processTickers = async path => {
+    let tickers = require('fs').readFileSync(path, 'utf-8').split(/\r?\n/);
+    db.doc('/tickers/supportedTickers').set({'s&p500': tickers });
+}

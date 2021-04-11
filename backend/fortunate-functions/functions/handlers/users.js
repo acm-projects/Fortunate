@@ -10,7 +10,7 @@ const db = require('../util/admin').admin.firestore();
 
 // const FBAuth = require('../util/fbauth');
 const { getTickerList } = require('../util/helper');
-const { getManyTickers } = require('../util/yahooapi');
+const { getManyTickers, processTickers } = require('../util/yahooapi');
 
 // Handles log-in requests
 exports.login = (request, response) => {
@@ -86,6 +86,14 @@ exports.signup = (request, response) => {
 				createdAt: new Date().toISOString(),
 				userID: userID,
 			};
+            //
+            const portfolio = {
+                cash : 1000000,
+                securities : {
+
+                }
+            }
+            db.doc(`/userdata/${newUser.username}`).set( {portfolio : portfolio});
 			return db.doc(`/users/${newUser.username}`).set(credentials);
 		})
 		.then(() => {
@@ -243,8 +251,6 @@ exports.trade = async (req,res) => {
         console.error(error);
         return res.status(500).json({error: error.code});
     });
-    // TODO: VALIDATE ORDER
-    // TODO: PROCESS ORDER
 }
 
 // Similar function to getStockPrice, this one just takes a timestamp. getStockPrice may be removed and this one used instead.
@@ -391,10 +397,12 @@ exports.getTransactions = (req, res) => {
     db.collection('userdata').doc(req.user.username).get().then(data => {
         // Makes sure the user exists
         if( !data.exists ) {
-            return res.status(400).json({error: 'User not found'});
+            //return res.status(400).json({error: 'User not found'});
         }
         return data.ref.collection('transactions').get();
     }).then(data => {
+        if(data)
+
         // Get transactions
         var tr =  {};
         data.forEach(doc => {
@@ -462,5 +470,34 @@ exports.getValueHistory = (req, res) => {
     }).catch(error => {
         console.error(error);
         return res.status(500).json({error:error});
+    });
+}
+
+// Implement Function to import list of tickers into firebase
+/*
+exports.init = (req, res) => {
+    processTickers('tickers.txt');
+    return res.status(200).json({});
+}
+*/
+
+
+// Function to update User Value at the end of the day
+
+exports.updateUserValues = async () => {
+    db.collection('userdata').get().then(data => {
+        data.forEach(async (user) => {
+            const p = user.data().portfolio;
+            let value = await calculateUserValue(p);
+            // Add entry into the database, named the current day. **THIS MAY CHANGE** may change this to a timestamp
+            let date = new Date();
+            date.setHours(0,0,0,0);
+            date = date / 1000;
+            date = '' + date;
+            //date = date.toDateString();
+            await user.ref.collection('value').doc(date).set({end: value});
+        });
+    }).catch(error => {
+        console.error(error);
     });
 }

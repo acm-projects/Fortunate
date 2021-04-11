@@ -2,9 +2,9 @@ const functions = require("firebase-functions");
 const { user } = require("firebase-functions/lib/providers/auth");
 const app = require("express")();
 
-const { login, signup, trade, getAuthUser, dayValue, getQuoteInfo, updateTickers, getTransactions, getAccBD, getValueHistory } = require("./handlers/users");
+const { login, signup, trade, getAuthUser, dayValue, getQuoteInfo, updateTickers, getTransactions, getAccBD, getValueHistory, updateUserValues/*init*/ } = require("./handlers/users");
 
-const {FBAuth} = require('./util/fbauth');
+const { FBAuth } = require('./util/fbauth');
 const { getMarketSummary, getQuotes, getOneTicker } = require("./util/yahooapi");
 
 // Users Routes
@@ -32,5 +32,6 @@ exports.scheduledFunction = functions.pubsub.schedule('0 16 * * 1-5')
     .timeZone('America/New_York')
     .onRun(updateTickers);
 
+//app.get('/init', init);
 
 exports.api = functions.https.onRequest(app);
