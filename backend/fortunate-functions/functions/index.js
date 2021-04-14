@@ -2,7 +2,7 @@ const functions = require("firebase-functions");
 const { user } = require("firebase-functions/lib/providers/auth");
 const app = require("express")();
 
-const { login, signup, trade, getAuthUser, dayValue, getQuoteInfo, updateTickers, getTransactions, getAccBD, getValueHistory, updateUserValues/*init*/ } = require("./handlers/users");
+const { login, signup, trade, getAuthUser, dayValue, getQuoteInfo, updateTickersAndUserValues, getTransactions, getAccBD, getValueHistory } = require("./handlers/users");
 
 const { FBAuth } = require('./util/fbauth');
 const { getMarketSummary, getQuotes, getOneTicker } = require("./util/yahooapi");
@@ -27,10 +27,10 @@ app.get("/transactions",FBAuth, getTransactions);
 app.get("/breakdown",FBAuth, getAccBD);
 app.get("/valueot",FBAuth, getValueHistory);
 
-// Scheduled task
+// Scheduled task to update tickers and user values
 exports.scheduledFunction = functions.pubsub.schedule('0 16 * * 1-5')
     .timeZone('America/New_York')
-    .onRun(updateTickers);
+    .onRun(updateTickersAndUserValues);
 
 //app.get('/init', init);
 

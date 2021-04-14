@@ -328,7 +328,7 @@ exports.dayValue = async (req, res) => {
 /**
  * Updates all database ticker values for the supported symbols
  */
- exports.updateTickers = async () => {
+ const updateTickers = async () => {
     const tickerList = await getTickerList();    // The list of all supported stocks 
     
     tickersToAdd = [];
@@ -484,7 +484,7 @@ exports.init = (req, res) => {
 
 // Function to update User Value at the end of the day
 
-exports.updateUserValues = async () => {
+const updateUserValues = async () => {
     db.collection('userdata').get().then(data => {
         data.forEach(async (user) => {
             const p = user.data().portfolio;
@@ -500,4 +500,10 @@ exports.updateUserValues = async () => {
     }).catch(error => {
         console.error(error);
     });
+}
+
+
+exports.updateTickersAndUserValues = async () => {
+    await updateUserValues();
+    await updateTickers();
 }
