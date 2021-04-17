@@ -35,3 +35,12 @@ exports.scheduledFunction = functions.pubsub.schedule('0 16 * * 1-5')
 //app.get('/init', init);
 
 exports.api = functions.https.onRequest(app);
+
+
+
+
+
+
+const { getTickerListTest } = require('./util/helper');
+
+app.get("/test", getTickerListTest);

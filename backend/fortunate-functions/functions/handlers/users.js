@@ -333,7 +333,7 @@ exports.dayValue = async (req, res) => {
     
     tickersToAdd = [];
     let req = { body: {}};
-    let res;
+    let res = {};
     tickerList.forEach((ticker) => { // add all the tickers into the array
         tickersToAdd.push(ticker);
         if ( tickersToAdd.length === 6) {   // when the number of tickers in the array reaches 6, call the api function
@@ -359,7 +359,6 @@ exports.dayValue = async (req, res) => {
     })
     getManyTickers(req, res);
     if(res.error === true) throw new Error("Error in last ticker API call");
-    return {success: 'Supported tickers have been updated'};
 }
 
 
@@ -504,6 +503,6 @@ const updateUserValues = async () => {
 
 
 exports.updateTickersAndUserValues = async () => {
-    await updateUserValues();
+    // await updateUserValues();
     await updateTickers();
 }

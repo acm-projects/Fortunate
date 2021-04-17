@@ -43,7 +43,7 @@ let db_schema =
 
                 //... transaction IDs
             },
-            endofday :
+            value :
             {
                 "[timestamp]" : 
                 {
