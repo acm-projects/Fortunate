@@ -67,11 +67,17 @@ class login extends Component {
 			.then(res => {
 				console.log(res.data);
 
-				localStorage.setItem("FBIdToken", "Bearer ${res.data.token}");
+				console.log("Token: " + res.data.token);
+
+				localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
 
 				this.setState({
 					loading: false,
 				});
+
+				axios.defaults.headers.common[
+					"Authorization"
+				] = `Bearer ${res.data.token}`;
 				this.props.history.push("/");
 			})
 			.catch(err => {
@@ -120,7 +126,7 @@ class login extends Component {
 					>
 						Login
 					</Typography>
-					<form noValidate onsubmit={this.handleSubmit}>
+					<form noValidate onSubmit={this.handleSubmit}>
 						<TextField
 							inputProps={{ style: { color: "gold" } }}
 							InputLabelProps={{ style: { color: "#fff" } }}

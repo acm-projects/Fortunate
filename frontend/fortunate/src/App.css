@@ -68,12 +68,6 @@ body {
 	color: gold;
 }
 
-.LineGraph {
-	background-color: black;
-}
-.PieChart {
-	background-color: black;
-}
 .BodyContainer {
 	display: block;
 	justify-content: space-between;

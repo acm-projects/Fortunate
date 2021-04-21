@@ -288,7 +288,7 @@ async function calculateUserValue(portfolio) {
         timestamp = timestamp - 86400000;
     }
     //let timestamp = 1615582740;
-    timestamp = timestamp.setHours(20, 59, 0, 0);
+    timestamp = new Date(timestamp).setHours(20, 59, 0, 0);
     timestamp = timestamp / 1000;
     // Calculate value of the securities
     for(const s of securities) {
@@ -310,14 +310,15 @@ exports.dayValue = async (req, res) => {
     }).then(async (data) => {
         // Get the user's value
         let value = await calculateUserValue(data.data().portfolio);
-        
         // Add entry into the database, named the current day. **THIS MAY CHANGE** may change this to a timestamp
         let date = new Date();
         date.setHours(0,0,0,0);
-        date = date / 1000;
-        date = '' + date;
         //date = date.toDateString();
-        await data.ref.collection('value').doc(date).set({end: value});
+        await data.ref.collection('value').add(
+            { 
+                end: value,
+                timestamp: date
+            });
         return res.status(200).json({value : value});
     }).catch((error) => {
         console.error(error);
@@ -459,7 +460,7 @@ exports.getValueHistory = (req, res) => {
         if( !data.exists ) {
             return res.status(400).json({error: 'User not found'})
         }
-        return data.ref.collection('value').get();
+        return data.ref.collection('value').orderBy('timestamp').limitToLast(7).get();
     }).then(data => {
         // Get Values
         var tr =  {};

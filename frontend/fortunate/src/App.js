@@ -15,7 +15,17 @@ import home from "./pages/home";
 import portfolio from "./pages/portfolio";
 import dictionary from "./pages/dictionary";
 import introduction from "./pages/lessons/introduction";
-import vmpage from "./pages/stockPage/vmpage"
+import trading from "./pages/lessons/trading";
+import vmpage from "./pages/stockPage/vmpage";
+
+import axios from "axios";
+
+const token = localStorage.FBIdToken;
+if (token) {
+	axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+}
+
+axios.defaults.headers.common["Accept"] = "application/json";
 
 // TODO: Authenticate Log-in with jwt-decode and AuthRoute
 
@@ -49,6 +59,11 @@ class App extends Component {
 								exact
 								path="/learn/intro"
 								component={introduction}
+							/>
+							<Route
+								exact
+								path="/learn/trading"
+								component={trading}
 							/>
 							<Route exact path="/vmpage" component={vmpage} />
 						</Switch>

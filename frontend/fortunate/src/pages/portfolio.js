@@ -1,7 +1,8 @@
-import { Line } from "react-chartjs-2";
+import { Line, Pie } from "react-chartjs-2";
 
-import LineGraph from "../components/LineGraph";
-import PieChart from "../components/PieChart";
+//import PerformanceChart from "../components/PerformanceChart";
+import PerformanceChart from "./PerformanceChart";
+import HoldingsChart from "../components/HoldingsChart";
 
 // Material UI
 import Box from "@material-ui/core/Box";
@@ -14,23 +15,22 @@ const Portfolio = () => {
 				container
 				direction="row"
 				justify="space-around"
-				alignItems="center"
+				alignItems="flex-start"
 			>
-				<Grid item sm={4} style={{ padding: 10 }}>
-					<PieChart />
+				<Grid item style={{ padding: 10, width: "25vw" }}>
+					<HoldingsChart />
 				</Grid>
-
-				<Grid item sm={4} style={{ padding: 10 }}>
-					<LineGraph />
+				<Grid item style={{ padding: 10, width: "50vw" }}>
+					<PerformanceChart />
 				</Grid>
-
-				<Grid item sm={4} style={{ padding: 10 }}>
+				<Grid item style={{ padding: 10, width: "25vw" }}>
 					<Box
 						display="flex"
 						justifyContent="center"
 						style={{
 							backgroundColor: "black",
-							height: "414px",
+							height: "400",
+							width: "600",
 							color: "#666",
 							fontSize: "20px",
 							fontFamily: '"Spartan", sans-serif',
