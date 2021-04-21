@@ -5,6 +5,11 @@ export const wordsList = [
 			"The price a seller is willing to accept for a security, which is often referred to as the offer price.",
 	},
 	{
+		term: "Auction Exchange",
+		definition:
+			"An auction exchange is a type of stock exchange in which buyers and sellers enter competitive bids simultaneously",
+	},
+	{
 		term: "Bid",
 		definition: "The price you are willing to pay for a stock.",
 	},
@@ -38,9 +43,19 @@ export const wordsList = [
 			"The total amount of stock potential buyers would be willing to buy at any price.",
 	},
 	{
+		term: "Electronic Exchange",
+		definition:
+			"An electronic exchange is a type of stock exchange in which order entry and forwarding, matching of buy and sell orders, and price determination are performed digitally by a computer.",
+	},
+	{
 		term: "Exchange",
 		definition:
 			"A marketplace where securities, commodities, derivatives and other financial instruments are traded.",
+	},
+	{
+		term: "Full-service Broker",
+		definition:
+			"A licensed financial broker-dealer firm that provides a large variety of services to its clients, including research and advice, retirement planning, tax tips, and much more.",
 	},
 	{
 		term: "Initial Public Offer (IPO)",
@@ -58,6 +73,11 @@ export const wordsList = [
 			"Shares that trade for corporations with a market capitalization of $10 billion or more.",
 	},
 	{
+		term: "Liquidity",
+		definition:
+			"The degree to which a security can be quickly purchased or sold in the market at a price reflecting its current value or the ease with which a security or an asset can be converted into cash at market price.",
+	},
+	{
 		term: "List",
 		definition:
 			"A list of the stocks available on a particular exchange and their issuers.",
@@ -71,6 +91,11 @@ export const wordsList = [
 		term: "Market Value",
 		definition:
 			"The value of a company according to the financial markets. ",
+	},
+	{
+		term: "Online Broker",
+		definition:
+			"An intermediary between a buyer and seller of a financial instrument. They facilitate the purchase/sale for a fee or commission.",
 	},
 	{
 		term: "Private Company",
@@ -92,7 +117,7 @@ export const wordsList = [
 			"There stocks have fewer publicly-traded shares than mid or large-cap companies. These businesses have between $300 million and $2 billion of the total dollar value of all outstanding shares—those held by investors, and company insiders.",
 	},
 	{
-		term: "Spreads",
+		term: "Spread",
 		definition:
 			"The difference in price between the buy (bid) and sell (offer) prices quoted for an asset.",
 	},
@@ -100,6 +125,11 @@ export const wordsList = [
 		term: "Stock",
 		definition:
 			"A stock (also known as equity) is a security that represents the ownership of a fraction of a corporation.",
+	},
+	{
+		term: "Stock Exchange",
+		definition:
+			"A stock exchange, securities exchange, or bourse is an exchange where stockbrokers and traders can buy and sell securities, such as shares of stock, bonds, and other financial instruments.",
 	},
 	{
 		term: "Stock Market",
@@ -110,5 +140,10 @@ export const wordsList = [
 		term: "Supply",
 		definition:
 			"The total number of stock holders who would be willing to sell their shares at any price.",
+	},
+	{
+		term: "Ticker Symbol",
+		definition:
+			"An abbreviation used to uniquely identify publicly traded shares of a particular stock on a particular stock market that may consist of letters, numbers or a combination of both.",
 	},
 ];
