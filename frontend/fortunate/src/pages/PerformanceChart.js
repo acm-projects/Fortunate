@@ -31,12 +31,9 @@ class PerformanceChart extends Component {
 	componentDidMount() {
 		// Get data from firestore
 		console.log("Mounted!");
-		axios.get("/portfoliotest").then(response => {
+		axios.get("/portfolio").then(response => {
 			console.log(response);
-
-			var values = response.data;
-
-			console.log(values);
+			console.log(JSON.stringify(response.data));
 		});
 	}
 

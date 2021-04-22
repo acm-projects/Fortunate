@@ -42,7 +42,7 @@ app.get("/transactions", FBAuth, getTransactions);
 app.get("/breakdown", FBAuth, getAccBD);
 app.get("/valueot", FBAuth, getValueHistory);
 
-app.get("/portfoliotest", FBAuth, getValueHistory);
+app.get("/portfolio", FBAuth, getValueHistory);
 
 // Scheduled task
 exports.scheduledFunction = functions.pubsub
