@@ -258,7 +258,6 @@ exports.getOneTicker = (req, res) => {
 				); // commit of the i-th ticker
 			}
 
-<<<<<<< HEAD
 			await batch
 				.commit() //commit the batch
 				.then(() => {
@@ -272,19 +271,6 @@ exports.getOneTicker = (req, res) => {
 				});
 		});
 };
-=======
-            await batch.commit() //commit the batch
-            .then(() => {
-                res.error = false;
-                return res;
-            }).catch(error => {
-                console.error(error);
-                res.error = true;
-                return res;
-            })
-        });
-}
->>>>>>> scheduler
 
 exports.processTickers = async path => {
 	let tickers = require("fs").readFileSync(path, "utf-8").split(/\r?\n/);
