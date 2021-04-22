@@ -346,7 +346,7 @@ exports.dayValue = async (req, res) => {
                     tickersToAdd[4],
                     tickersToAdd[5]
                 ];
-            getManyTickers(req, res);
+            res = getManyTickers(req, res);
             if(res.error === true) throw new Error("Error in looped ticker API call");
             tickersToAdd.length = 0;
         }
@@ -357,7 +357,7 @@ exports.dayValue = async (req, res) => {
     tickersToAdd.forEach((ticker) => {
         req.body.tickers.push(ticker);
     })
-    getManyTickers(req, res);
+    res = getManyTickers(req, res);
     if(res.error === true) throw new Error("Error in last ticker API call");
 }
 
@@ -505,4 +505,5 @@ const updateUserValues = async () => {
 exports.updateTickersAndUserValues = async () => {
     // await updateUserValues();
     await updateTickers();
+    return;
 }

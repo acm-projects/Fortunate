@@ -212,11 +212,11 @@ exports.getQuotes = (req, res) => {
             await batch.commit() //commit the batch
             .then(() => {
                 res.error = false;
-                return;
+                return res;
             }).catch(error => {
                 console.error(error);
                 res.error = true;
-                return;
+                return res;
             })
         });
 }
