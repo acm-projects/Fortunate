@@ -328,12 +328,12 @@ exports.dayValue = async (req, res) => {
 /**
  * Updates all database ticker values for the supported symbols
  */
- const updateTickers = async () => {
+ const updateTickers = async (req, res) => {
     const tickerList = await getTickerList();    // The list of all supported stocks 
     
     tickersToAdd = [];
-    let req = { body: {}};
-    let res = {};
+    // let req = { body: {}};
+    // let res = {};
     tickerList.forEach((ticker) => { // add all the tickers into the array
         tickersToAdd.push(ticker);
         if ( tickersToAdd.length === 6) {   // when the number of tickers in the array reaches 6, call the api function
@@ -347,7 +347,12 @@ exports.dayValue = async (req, res) => {
                     tickersToAdd[5]
                 ];
             res = getManyTickers(req, res);
-            if(res.error === true) throw new Error("Error in looped ticker API call");
+            console.log(tickersToAdd); // test log
+            console.log(res.error); // test log
+
+            if(res.error === true) {
+                throw new Error("Error in looped ticker API call");
+            }
             tickersToAdd.length = 0;
         }
     });
@@ -357,6 +362,7 @@ exports.dayValue = async (req, res) => {
     tickersToAdd.forEach((ticker) => {
         req.body.tickers.push(ticker);
     })
+    console.log(tickersToAdd); // test log
     res = getManyTickers(req, res);
     if(res.error === true) throw new Error("Error in last ticker API call");
 }
@@ -502,8 +508,11 @@ const updateUserValues = async () => {
 }
 
 
-exports.updateTickersAndUserValues = async () => {
+exports.updateTickersAndUserValues = async (req, res) => {
     // await updateUserValues();
-    await updateTickers();
-    return;
+    await updateTickers(req, res).then( () => {
+        return res.status(200).json({success: 'success'});
+    }).catch(error => {
+        return res.status(500).json({error: error});
+    });
 }

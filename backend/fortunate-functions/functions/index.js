@@ -2,7 +2,7 @@ const functions = require("firebase-functions");
 const { user } = require("firebase-functions/lib/providers/auth");
 const app = require("express")();
 
-const { login, signup, trade, getAuthUser, dayValue, getQuoteInfo, updateTickersAndUserValues, getTransactions, getAccBD, getValueHistory } = require("./handlers/users");
+const { login, signup, trade, getAuthUser, dayValue, getQuoteInfo, updateTickersAndUserValues, getTransactions, getAccBD, getValueHistory, test } = require("./handlers/users");
 
 const { FBAuth } = require('./util/fbauth');
 const { getMarketSummary, getQuotes, getOneTicker } = require("./util/yahooapi");
@@ -28,9 +28,9 @@ app.get("/breakdown",FBAuth, getAccBD);
 app.get("/valueot",FBAuth, getValueHistory);
 
 // Scheduled task to update tickers and user values
-exports.scheduledFunction = functions.pubsub.schedule('0 16 * * 1-5')
-    .timeZone('America/New_York')
-    .onRun(updateTickersAndUserValues);
+// exports.scheduledFunction = functions.pubsub.schedule('0 16 * * 1-5')
+//     .timeZone('America/New_York')
+//     .onRun(await updateTickersAndUserValues);
 
 //app.get('/init', init);
 
@@ -40,7 +40,6 @@ exports.api = functions.https.onRequest(app);
 
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const { getTickerListTest } = require('./util/helper');
-
-app.get("/test", getTickerListTest);
+app.post('/test', updateTickersAndUserValues);    // test post route for API
