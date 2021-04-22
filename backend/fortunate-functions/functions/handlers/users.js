@@ -504,6 +504,6 @@ const updateUserValues = async () => {
 
 
 exports.updateTickersAndUserValues = async () => {
-    // await updateUserValues();
-    await updateTickers();
+    await updateUserValues();
+    // await updateTickers();
 }

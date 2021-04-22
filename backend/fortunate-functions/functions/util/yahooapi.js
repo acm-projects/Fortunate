@@ -150,7 +150,7 @@ exports.getQuotes = (req, res) => {
  *      Doc: name of the symbol
  * 
  */ 
- exports.getManyTickers = (req, res) => {
+ exports.getManyTickers = async (req, res) => {
     if(req.body.tickers === undefined) throw new Error("No tickers entered.");
     let ticker = req.body.tickers[0];
 
