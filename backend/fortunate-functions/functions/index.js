@@ -30,7 +30,7 @@ app.get("/valueot",FBAuth, getValueHistory);
 // Scheduled task to update tickers and user values
 exports.scheduledFunction = functions.pubsub.schedule('0 16 * * 1-5')
     .timeZone('America/New_York')
-    .onRun(updateTickersAndUserValues);
+    .onRun(await updateTickersAndUserValues);
 
 //app.get('/init', init);
 
