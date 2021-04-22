@@ -14,6 +14,7 @@ import Typography from "@material-ui/core/Typography";
 
 import AppIcon from "../images/Fortunate_Logo.svg";
 
+
 const styles = {
 	form: {
 		textAlign: "center",
@@ -95,9 +96,27 @@ class login extends Component {
 		const { classes } = this.props;
 		const { errors, loading } = this.state;
 		return (
+			<>
+			<div className="lbg">
+			<iframe
+							style={{
+								position: "absolute",
+								width: "100%",
+								left: "50%",
+								top: "50%",
+								height: "130%",
+								objectFit: "cover",
+								transform: "translate(-50%, -50%)",
+								zIndex: "-1"
+							}} title="Golden Dust background"
+							src="https://www.youtube.com/embed/y_Xl5fMS-8E?autoplay=1&mute=1&disablekb=1&modestbranding=1&rel=0&playlist=y_Xl5fMS-8E&loop=1&controls=0"
+						></iframe>
+			</div>
+		//	<div className="grd">
 			<Grid container className={classes.form}>
 				<Grid item sm />
 				<Grid item sm>
+
 					<img src={AppIcon} alt="coin" width="200" height="200" />
 
 					<Typography
@@ -173,6 +192,8 @@ class login extends Component {
 				</Grid>
 				<Grid item sm />
 			</Grid>
+			// </div>
+			</>
 		);
 	}
 }

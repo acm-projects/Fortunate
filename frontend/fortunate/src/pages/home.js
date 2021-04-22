@@ -12,6 +12,9 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { makeStyles } from "@material-ui/core/styles";
 
 
+import PicSlides from "../components/PicSlides";
+import { PicData } from "../components/PicData.js";
+
 const useStyles = makeStyles({
 	root: {borderLeft:0, borderTop:5, borderBottom:5, borderRight:0,  borderColor: "#70A851", square:true, variant:"outlined" }
 });
@@ -20,6 +23,9 @@ const Home = () => {
 	const classes = useStyles();
 	return (
 		<home>
+
+		<PicSlides slides={PicData} />
+
 			<Grid container className="home">
 				<Grid item xs={12}>
 					<Box width="100%">
