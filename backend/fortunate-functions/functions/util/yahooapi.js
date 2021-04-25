@@ -167,11 +167,11 @@ exports.getOneTicker = (req, res) => {
  * Stored in:
  *      Collection: "tickers"
  *      Doc: name of the symbol
- *
- */
-exports.getManyTickers = (req, res) => {
-	if (req.body.tickers === undefined) throw new Error("No tickers entered.");
-	let ticker = req.body.tickers[0];
+ * 
+ */ 
+ exports.getManyTickers = async (req, res) => {
+    if(req.body.tickers === undefined) throw new Error("No tickers entered.");
+    let ticker = req.body.tickers[0];
 
 	let otherTickers = req.body.tickers[1];
 	for (let i = 2; i < req.body.tickers.length; i++) {
@@ -262,12 +262,12 @@ exports.getManyTickers = (req, res) => {
 				.commit() //commit the batch
 				.then(() => {
 					res.error = false;
-					return;
+					return res;
 				})
 				.catch(error => {
 					console.error(error);
 					res.error = true;
-					return;
+					return res;
 				});
 		});
 };

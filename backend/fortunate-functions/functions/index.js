@@ -9,12 +9,11 @@ const {
 	getAuthUser,
 	dayValue,
 	getQuoteInfo,
-	updateTickers,
+    updateTickersAndUserValues,
 	getTransactions,
 	getAccBD,
 	getValueHistory,
-	getTestValueHistory,
-	updateUserValues /*init*/,
+	getTestValueHistory
 } = require("./handlers/users");
 
 const { FBAuth } = require("./util/fbauth");
@@ -44,11 +43,10 @@ app.get("/valueot", FBAuth, getValueHistory);
 
 app.get("/portfolio", FBAuth, getValueHistory);
 
-// Scheduled task
-exports.scheduledFunction = functions.pubsub
-	.schedule("0 16 * * 1-5")
-	.timeZone("America/New_York")
-	.onRun(updateTickers);
+// Scheduled task to update tickers and user values
+exports.scheduledFunction = functions.pubsub.schedule('0 16 * * 1-5')
+    .timeZone('America/New_York')
+    .onRun(updateTickersAndUserValues);
 
 //app.get('/init', init);
 
