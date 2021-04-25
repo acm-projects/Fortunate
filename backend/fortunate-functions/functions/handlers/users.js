@@ -493,10 +493,8 @@ exports.updateUserValues = async () => {
             // Add entry into the database, named the current day. **THIS MAY CHANGE** may change this to a timestamp
             let date = new Date();
             date.setHours(0,0,0,0);
-            date = date / 1000;
-            date = '' + date;
             //date = date.toDateString();
-            await user.ref.collection('value').doc(date).set({end: value});
+            await user.ref.collection('value').add({end: value, timestamp : date});
         });
     }).catch(error => {
         console.error(error);
