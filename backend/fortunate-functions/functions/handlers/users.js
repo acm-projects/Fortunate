@@ -329,7 +329,7 @@ exports.dayValue = async (req, res) => {
 /**
  * Updates all database ticker values for the supported symbols
  */
- exports.updateTickers = async () => {
+ const updateTickers = async () => {
     const tickerList = await getTickerList();    // The list of all supported stocks 
     
     tickersToAdd = [];
@@ -347,7 +347,7 @@ exports.dayValue = async (req, res) => {
                     tickersToAdd[4],
                     tickersToAdd[5]
                 ];
-            getManyTickers(req, res);
+            res = getManyTickers(req, res);
             if(res.error === true) throw new Error("Error in looped ticker API call");
             tickersToAdd.length = 0;
         }
@@ -358,7 +358,7 @@ exports.dayValue = async (req, res) => {
     tickersToAdd.forEach((ticker) => {
         req.body.tickers.push(ticker);
     })
-    getManyTickers(req, res);
+    res = getManyTickers(req, res);
     if(res.error === true) throw new Error("Error in last ticker API call");
     return {success: 'Supported tickers have been updated'};
 }
@@ -485,7 +485,7 @@ exports.init = (req, res) => {
 
 // Function to update User Value at the end of the day
 
-exports.updateUserValues = async () => {
+const updateUserValues = async () => {
     db.collection('userdata').get().then(data => {
         data.forEach(async (user) => {
             const p = user.data().portfolio;
@@ -493,12 +493,16 @@ exports.updateUserValues = async () => {
             // Add entry into the database, named the current day. **THIS MAY CHANGE** may change this to a timestamp
             let date = new Date();
             date.setHours(0,0,0,0);
-            date = date / 1000;
-            date = '' + date;
             //date = date.toDateString();
-            await user.ref.collection('value').doc(date).set({end: value});
+            await user.ref.collection('value').add({end: value, timestamp : date});
         });
     }).catch(error => {
         console.error(error);
     });
+}
+
+
+exports.updateTickersAndUserValues = async () => {
+    await updateUserValues();
+    // await updateTickers();
 }
