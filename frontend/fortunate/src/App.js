@@ -33,6 +33,7 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
+				<link rel="shortcut icon" href="./images/favicon.ico" />
 				<Helmet>
 					<style>{"body {background-color: #424242;}"}</style> // #fff
 					- white #424242-grey #ffab00 -yellowish

@@ -32,54 +32,46 @@ const Footer = () => {
 	const classes = useStyles();
 
 	return (
-		<footer>
-			<Box boxShadow="20px 20px 20px 20px">
-				<AppBar position="static" elevation={24}>
-					<Box paddingTop={2}>
-						<Toolbar>
-							<Grid container justify="space-evenly">
-								<Grid item xs={2}>
-									<h1 className="logo">Fortunate</h1>
-								</Grid>
-								<Grid item xs={1}>
-									<Link to="/">
-										<Button text="About" />
-									</Link>
-								</Grid>
-								<Grid item xs={1}>
-									<a href="/portfolio">
-										<Button text="Virtual Market" />
-									</a>
-								</Grid>
-								<Grid item xs={1}>
-									<a href="/learn/intro">
-										<Button text="Courses" />
-									</a>
-								</Grid>
-								<Grid item xs={1}>
-									<Button text="Contact" />
-								</Grid>
-								<Grid item xs={1}>
-									<Link to="/signup">
-										<Button text="Sign Up" />
-									</Link>
-								</Grid>
-								<Grid item xs={1}>
-									<Link to="/login">
-										<Button text="Login" />
-									</Link>
-								</Grid>
-								<Grid item xs={1}>
-									<a href="#top">
-										<Button text="Top" />
-									</a>
-								</Grid>
-							</Grid>
-						</Toolbar>
-					</Box>
-				</AppBar>
-			</Box>
-		</footer>
+		<Box className="footer">
+			<Grid container justify="space-evenly">
+				<Grid item xs={2}>
+					<h1 className="logo">Fortunate</h1>
+				</Grid>
+				<Grid item xs={1}>
+					<Link to="/">
+						<Button text="About" />
+					</Link>
+				</Grid>
+				<Grid item xs={1}>
+					<a href="/portfolio">
+						<Button text="Virtual Market" />
+					</a>
+				</Grid>
+				<Grid item xs={1}>
+					<a href="/learn/intro">
+						<Button text="Courses" />
+					</a>
+				</Grid>
+				<Grid item xs={1}>
+					<Button text="Contact" />
+				</Grid>
+				<Grid item xs={1}>
+					<Link to="/signup">
+						<Button text="Sign Up" />
+					</Link>
+				</Grid>
+				<Grid item xs={1}>
+					<Link to="/login">
+						<Button text="Login" />
+					</Link>
+				</Grid>
+				<Grid item xs={1}>
+					<a href="#top">
+						<Button text="Top" />
+					</a>
+				</Grid>
+			</Grid>
+		</Box>
 	);
 };
 
