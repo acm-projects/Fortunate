@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 import Button from "./Button";
 
+import AppIcon from "../images/Fortunate_Logo.svg";
+
 // Material UI
 import { fade, makeStyles } from "@material-ui/core/styles";
 import AccountCircle from "@material-ui/icons/AccountCircle";
@@ -197,6 +199,13 @@ export default function Header() {
 								>
 									<h1 className="logo">Fortunate</h1>
 								</Typography>
+								<img
+									className="appIconSmall"
+									src={AppIcon}
+									alt="coin"
+									width="45"
+									height="45"
+								/>
 								<div className={classes.search}>
 									<div className={classes.searchIcon}>
 										<SearchIcon />
