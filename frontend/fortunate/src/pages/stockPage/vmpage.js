@@ -38,7 +38,6 @@ class Vmpage extends React.Component {
     const currentActive = isbuyActive ? "Buy" : "Sell";
     return (
       <div className="vmpage">
-      Hello
       <LineGraph />
 
       <div className="bigcontainer">
