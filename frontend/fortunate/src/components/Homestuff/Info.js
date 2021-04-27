@@ -66,8 +66,8 @@ const Info = ({ heading, paragraphOne, paragraphTwo, reverse, image }) => {
     <Container>
       <Left>
         <h1> {heading}</h1>
-        <p> {paragraphOne}</p>
-        <p> {paragraphTwo}</p>
+       <p> {paragraphOne}</p>
+      <h5>  <p> {paragraphTwo}</p> </h5>
       </Left>
       <Right reverse={reverse}>
         <img src={image} alt="logo"/>
