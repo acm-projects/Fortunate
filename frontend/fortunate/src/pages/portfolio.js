@@ -15,28 +15,30 @@ const Portfolio = () => {
 				container
 				direction="row"
 				justify="space-around"
-				alignItems="flex-start"
-			>
-				<Grid item style={{ padding: 10, width: "25vw" }}>
-					<HoldingsChart />
+				alignItems="flex-start">
+				<Grid>
+					<Grid item style={{ paddingTop: 30, width: "50vw" }}>
+						<PerformanceChart />
+					</Grid>
+					<Grid item style={{ padding: 50, width: "50vw" }}>
+						<HoldingsChart />
+					</Grid>
 				</Grid>
-				<Grid item style={{ padding: 10, width: "50vw" }}>
-					<PerformanceChart />
-				</Grid>
-				<Grid item style={{ padding: 10, width: "25vw" }}>
+
+				<Grid item style={{ paddingTop: 30, width: "25vw" }}>
 					<Box
 						display="flex"
 						justifyContent="center"
 						style={{
-							backgroundColor: "black",
+							backgroundColor: "#666",
 							height: "400",
 							width: "600",
-							color: "#666",
+							color: "gold",
 							fontSize: "20px",
 							fontFamily: '"Spartan", sans-serif',
 						}}
 					>
-						<div style={{ paddingTop: 10 }}>Recent Trades</div>
+					<div style={{ paddingTop: 10 }}>Recent Trades</div>
 					</Box>
 				</Grid>
 			</Grid>

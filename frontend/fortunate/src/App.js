@@ -41,7 +41,7 @@ class App extends Component {
 
 				<Router>
 					<Header />
-					<div>
+					<div className = "content">
 						<Switch>
 							<Route exact path="/" component={home} />
 							<Route exact path="/login" component={login} />
@@ -69,7 +69,7 @@ class App extends Component {
 							<Route exact path="/vmpage" component={vmpage} />
 						</Switch>
 					</div>
-					<Footer />
+					<Footer></Footer>
 				</Router>
 			</div>
 		);

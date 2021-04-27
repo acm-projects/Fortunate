@@ -68,6 +68,11 @@ body {
 	color: gold;
 }
 
+.content {
+	display: flex;
+	flex-direction: column;
+	min-height: 85vh;
+}
 .BodyContainer {
 	display: block;
 	justify-content: space-between;

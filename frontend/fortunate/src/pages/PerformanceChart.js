@@ -46,6 +46,7 @@ class PerformanceChart extends Component {
 						display: true,
 						text: "Portfolio Performance",
 						fontSize: 30,
+						fontColor: "gold",
 					},
 					legend: {
 						display: false,
