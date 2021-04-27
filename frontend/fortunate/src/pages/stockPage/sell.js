@@ -41,12 +41,12 @@ export class Sell extends Component {
         <div className="form">
             <div className="form-group">
               <label>
-                Ticker: <input type="text" name="ticker" placeholder="Ex: GME" onChange={this.handleTickerChange.bind(this)}/>
+                Quantity: <input type="text" name="ticker" placeholder="Ex: 1, 2, 3" onChange={this.handleTickerChange.bind(this)}/>
               </label>
             </div>
             <div className="form-group">
               <label>
-                Amount: <input type="text" name="amount" placeholder="0" onChange={this.handleQuantChange.bind(this)}/>
+                Amount: <input type="text" name="amount" placeholder="$0.00" onChange={this.handleQuantChange.bind(this)}/>
               </label>
             </div>
             <hr class="horizontal-line"></hr>

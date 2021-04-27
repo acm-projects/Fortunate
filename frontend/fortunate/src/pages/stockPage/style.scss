@@ -3,12 +3,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 15em;
+// background-color: #F0BE00;
 
   .header {
     font-size: 24px;
     font-family: "Open Sans", sans-serif;
     width: 50%;
     color: #fff;
+    background-color: #F0BE00;
+    border-color: #F0BE00; //#5BC4EB;
     // background-color........
   }
 
@@ -68,6 +72,7 @@
       border-color: #1A85FD;
     }
   .footer {
-    margin-top: 3em;
+    margin-top: 18em;
+    background-color: #F0BE00; //#5BC4EB;
   }
 }

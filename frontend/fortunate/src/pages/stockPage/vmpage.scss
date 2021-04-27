@@ -11,7 +11,7 @@
 }
 
 .bigcontainer-header {
-  background-color: #fff; //5BC4EB; //#282c34;
+  background-color:#fff; //5BC4EB; //#282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -50,7 +50,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #5BC4EB; //#808080; //#fff
+    background-color: #F0BE00;//#5BC4EB;
     box-shadow: 0px 0px 12px 2px rgba(15, 15, 15, 0.2);
     border-radius: 4px;
     position: relative;
@@ -66,7 +66,7 @@
     flex-direction: column;
     justify-content: center;
     height: 70%;
-    background-color: #3498db;
+    background-color: #FFD700; //#FFE164; //#3498db;
     width: 100%;
     position: absolute;
     right: -34%;

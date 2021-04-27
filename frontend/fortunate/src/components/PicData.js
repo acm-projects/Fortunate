@@ -16,7 +16,7 @@ export const PicData = [
     alt: "WELCOME"
   },
   {
-    title: "Intro LESSONS",
+    title: "INTRO LESSONS",
     sub: "Learn what is stock market.",
     path: './learn/intro',
     label: 'Intro Lessons',
@@ -24,7 +24,7 @@ export const PicData = [
     alt: "Quote"
   },
   {
-    title: "Trading LESSONS",
+    title: "TRADING LESSONS",
     sub: "Learn the basics of the stock market with handcrafted lessons.",
     path: './learn/trading',
     label: 'Trading Lessons',
@@ -40,7 +40,7 @@ export const PicData = [
     alt: "Quote"
   },
   {
-    title: "Portfolio",
+    title: "PORTFOLIO",
     sub: "Grow your portfolio over time as you build up your personal collection of equities.",
     path: './portfolio',
     label: 'View Portfolio',
