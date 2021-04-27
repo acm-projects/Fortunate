@@ -34,7 +34,6 @@ const Home = () => {
 								<Box paddingTop={1} borderTop={3} borderColor="#70A851">
 									<div id="top">
 										<h1>Fortunate</h1>
-										<h2>Slogan</h2>
 									</div>
 									<Buffer />
 									<div className="centered">
@@ -97,19 +96,7 @@ const Home = () => {
 								<Buffer />
 								<div className="centered">
 									<p className="BodyText">
-										Lorem ipsum dolor sit amet, consectetur
-										adipiscing elit. Integer nec odio.
-										Praesent libero. Sed cursus ante dapibus
-										diam. Sed nisi. Nulla quis sem at nibh
-										elementum imperdiet. Duis sagittis
-										ipsum. Praesent mauris. Fusce nec tellus
-										sed augue semper porta. Mauris massa.
-										Vestibulum lacinia arcu eget nulla.
-										Class aptent taciti sociosqu ad litora
-										torquent per conubia nostra, per
-										inceptos himenaeos. Curabitur sodales
-										ligula in libero. Sed dignissim lacinia
-										Dictionary.{" "}
+										Learn the basics of the stock market with handcrafted lessons built by our team to teach you the basics of in a fun and simple way. {" "}
 										<a href="/dictionary" target="_blank">
 											dic
 										</a>
@@ -137,19 +124,7 @@ const Home = () => {
 								<Buffer />
 								<div className="centered">
 									<p className="BodyText">
-										Lorem ipsum dolor sit amet, consectetur
-										adipiscing elit. Integer nec odio.
-										Praesent libero. Sed cursus ante dapibus
-										diam. Sed nisi. Nulla quis sem at nibh
-										elementum imperdiet. Duis sagittis
-										ipsum. Praesent mauris. Fusce nec tellus
-										sed augue semper porta. Mauris massa.
-										Vestibulum lacinia arcu eget nulla.
-										Class aptent taciti sociosqu ad litora
-										torquent per conubia nostra, per
-										inceptos himenaeos. Curabitur sodales
-										ligula in libero. Sed dignissim lacinia
-										nunc. Stock look up page{" "}
+										Apply your new skills using real market data from Fortune 500 companies. Grow your portfolio over time as you build up your personal collection of equities.{" "}
 											<a href="/vmpage" target="_blank">
 												page
 											</a>
@@ -180,19 +155,9 @@ const Home = () => {
 								<Buffer />
 								<div className="centered">
 									<p className="BodyText">
-										Lorem ipsum dolor sit amet, consectetur
-										adipiscing elit. Integer nec odio.
-										Praesent libero. Sed cursus ante dapibus
-										diam. Sed nisi. Nulla quis sem at nibh
-										elementum imperdiet. Duis sagittis
-										ipsum. Praesent mauris. Fusce nec tellus
-										sed augue semper porta. Mauris massa.
-										Vestibulum lacinia arcu eget nulla.
-										Class aptent taciti sociosqu ad litora
-										torquent per conubia nostra, per
-										inceptos himenaeos. Curabitur sodales
-										ligula in libero. Sed dignissim lacinia
-										nunc.{" "}
+									Investment involves risk. As a general rule, you should only trade in financial products that you are familiar with and understand the risk associated with them. The risk warning described in each financial product below is not exhaustive, you should carefully consider your investment experience, financial situation, investment objective, risk tolerance level and consult your independent financial adviser as to the suitability of your situation prior making any investment.
+
+{" "}
 									</p>
 								</div>
 								<Buffer />
