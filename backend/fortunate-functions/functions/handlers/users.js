@@ -183,6 +183,7 @@ exports.trade = async (req,res) => {
     let userport = {};
     let userref;
     let transaction = {};
+    transaction.symbol = req.body.symbol;
     transaction.price = price;
     transaction.quantity = req.body.quantity;
     transaction.timestamp = new Date().toISOString();
@@ -245,6 +246,7 @@ exports.trade = async (req,res) => {
         }
         
         // Update Transactions for user
+        console.log(transaction);
         const tres = await data.ref.collection('transactions').add(transaction);
         return res.json({Success : `Transaction succeeded with id: ${tres.id}`});
     }).catch((error) => {
