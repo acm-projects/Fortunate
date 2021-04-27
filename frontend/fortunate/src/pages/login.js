@@ -14,7 +14,6 @@ import Typography from "@material-ui/core/Typography";
 
 import AppIcon from "../images/Fortunate_Logo.svg";
 
-
 const styles = {
 	form: {
 		textAlign: "center",
@@ -96,104 +95,110 @@ class login extends Component {
 		const { classes } = this.props;
 		const { errors, loading } = this.state;
 		return (
-			<>
-			<div className="lbg">
-			<iframe
-							style={{
-								position: "absolute",
-								width: "100%",
-								left: "50%",
-								top: "50%",
-								height: "130%",
-								objectFit: "cover",
-								transform: "translate(-50%, -50%)",
-								zIndex: "-1"
-							}} title="Golden Dust background"
-							src="https://www.youtube.com/embed/y_Xl5fMS-8E?autoplay=1&mute=1&disablekb=1&modestbranding=1&rel=0&playlist=y_Xl5fMS-8E&loop=1&controls=0"
-						></iframe>
-			</div>
-		//	<div className="grd">
-			<Grid container className={classes.form}>
-				<Grid item sm />
-				<Grid item sm>
-
-					<img src={AppIcon} alt="coin" width="200" height="200" />
-
-					<Typography
-						variant="h3"
-						className={classes.pagetitle}
-						style={{ color: "gold" }}
-					>
-						Login
-					</Typography>
-					<form noValidate onSubmit={this.handleSubmit}>
-						<TextField
-							inputProps={{ style: { color: "gold" } }}
-							InputLabelProps={{ style: { color: "#fff" } }}
-							id="email"
-							name="email"
-							type="email"
-							label="Email"
-							className={classes.textField}
-							helperText={errors.email}
-							error={errors.email ? true : false}
-							value={this.state.email}
-							onChange={this.handleChange}
-							fullWidth
+			<div>
+				<iframe
+					style={{
+						position: "absolute",
+						left: "50%",
+						top: "50%",
+						width: "99%",
+						height: "99%",
+						objectFit: "cover",
+						transform: "translate(-50%, -50%)",
+						zIndex: "-1",
+					}}
+					title="Golden Dust background"
+					src="https://www.youtube.com/embed/y_Xl5fMS-8E?autoplay=1&mute=1&disablekb=1&modestbranding=1&rel=0&playlist=y_Xl5fMS-8E&loop=1&controls=0"
+				/>
+				<Grid container className={classes.form + " centered"}>
+					<Grid item sm />
+					<Grid item sm>
+						<img
+							src={AppIcon}
+							alt="coin"
+							width="150"
+							height="150"
 						/>
 
-						<TextField
-							inputProps={{ style: { color: "gold" } }}
-							InputLabelProps={{ style: { color: "#fff" } }}
-							id="password"
-							name="password"
-							type="password"
-							label="Password"
-							className={classes.textField}
-							helperText={errors.password}
-							error={errors.password ? true : false}
-							value={this.state.password}
-							onChange={this.handleChange}
-							fullWidth
-						/>
-
-						{errors.general && (
-							<Typography
-								variant="body2"
-								className={classes.customError}
-							>
-								{errors.general}
-							</Typography>
-						)}
-						<Button
-							type="submit"
-							variant="contained"
-							color="primary"
-							className={classes.button}
-							disabled={loading}
+						<Typography
+							variant="h3"
+							className={classes.pagetitle}
+							style={{ color: "gold" }}
+							align="center"
 						>
 							Login
-							{loading && (
-								<CircularProgress
-									size={30}
-									className={classes.progress}
-								/>
-							)}
-						</Button>
-						<br />
+						</Typography>
+						<form noValidate onSubmit={this.handleSubmit}>
+							<TextField
+								inputProps={{ style: { color: "gold" } }}
+								InputLabelProps={{
+									style: { color: "#fff" },
+								}}
+								id="email"
+								name="email"
+								type="email"
+								label="Email"
+								className={classes.textField}
+								helperText={errors.email}
+								error={errors.email ? true : false}
+								value={this.state.email}
+								onChange={this.handleChange}
+								fullWidth
+							/>
 
-						<small style={{ color: "gold" }}>
-							Don't have account? Sign-up{" "}
-							<Link to="/signup" style={{ color: "#FFF" }}>
-								here
-							</Link>
-						</small>
-					</form>
+							<TextField
+								inputProps={{ style: { color: "gold" } }}
+								InputLabelProps={{
+									style: { color: "#fff" },
+								}}
+								id="password"
+								name="password"
+								type="password"
+								label="Password"
+								className={classes.textField}
+								helperText={errors.password}
+								error={errors.password ? true : false}
+								value={this.state.password}
+								onChange={this.handleChange}
+								fullWidth
+							/>
+
+							{errors.general && (
+								<Typography
+									variant="body2"
+									className={classes.customError}
+								>
+									{errors.general}
+								</Typography>
+							)}
+							<Button
+								type="submit"
+								variant="contained"
+								color="primary"
+								className={classes.button}
+								disabled={loading}
+							>
+								Login
+								{loading && (
+									<CircularProgress
+										size={30}
+										className={classes.progress}
+									/>
+								)}
+							</Button>
+							<br />
+
+							<small style={{ color: "gold" }}>
+								Don't have account? Sign-up{" "}
+								<Link to="/signup" style={{ color: "#FFF" }}>
+									here
+								</Link>
+							</small>
+						</form>
+					</Grid>
+					<Grid item sm />
 				</Grid>
-				<Grid item sm />
-			</Grid>
-			// </div>
-			</>
+			</div>
 		);
 	}
 }

@@ -39,12 +39,28 @@ body {
 	align-items: center;
 	margin-bottom: 20px;
 	border-radius: 25px;
-	width: 1700px;
+	width: 100%;
 	margin: 0 auto;
 	background-color: #3c4049;
 	padding: 5px 30px 5px 30px;
 	border: 2px solid #4f535c;
 }
+
+.footer {
+	position: absolute;
+	bottom: 1;
+	width: 100%;
+	background-color: #3c4049;
+	padding-top: 5px;
+}
+
+.centered {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 80vh;
+}
+
 .btn {
 	display: inline-block;
 	color: gainsboro;
@@ -126,10 +142,6 @@ h2 {
 	font-family: "Roboto";
 	text-shadow: 3px 3px 1px black;
 	color: gainsboro;
-}
-.centered {
-	display: flex;
-	justify-content: center;
 }
 
 a:hover,
