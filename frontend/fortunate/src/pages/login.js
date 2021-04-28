@@ -110,7 +110,7 @@ class login extends Component {
 					title="Golden Dust background"
 					src="https://www.youtube.com/embed/y_Xl5fMS-8E?autoplay=1&mute=1&disablekb=1&modestbranding=1&rel=0&playlist=y_Xl5fMS-8E&loop=1&controls=0"
 				/>
-				<Grid container className={classes.form + " centered"}>
+				<Grid container className={classes.form + " centered fullPage"}>
 					<Grid item sm />
 					<Grid item sm>
 						<img

@@ -5,186 +5,207 @@ import { IoArrowForward, IoArrowBack } from "react-icons/io5";
 import Button from "@material-ui/core/Button";
 
 const PicSlidesSection = styled.section`
-  // changes pic size
-  height: 100vh;
-  max-height: 1100px;
-  position: relative;
-  overflow: hidden;
+	// changes pic size
+	height: 60vh;
+	max-height: 450px;
+	position: relative;
+	overflow: hidden;
 `;
 
 const PicSlidesWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	position: relative;
 `;
 
 const PicSlidesSlide = styled.div`
-  z-index: 1;
-  width: 100%;
-  height: 100%;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
 `;
 
 const PicSlidesSlider = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
-  &::before {
-    content: "";
-    position: absolute;
-    z-index: 2;
-    width: 100%;
-    height: 100vh;
-    bottom: 0vh;
-    left: 0;
-    overflow: hidden;
-    opacity: 0.4;
-    background: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.2) 0%,
-      rgba(0, 0, 0, 0.2) 50%,
-      rgba(0, 0, 0, 0.6) 100%
-    );
-  }
+	&::before {
+		content: "";
+		position: absolute;
+		z-index: 2;
+		width: 100%;
+		height: 100vh;
+		bottom: 0vh;
+		left: 0;
+		overflow: hidden;
+		opacity: 0.4;
+		background: linear-gradient(
+			0deg,
+			rgba(0, 0, 0, 0.2) 0%,
+			rgba(0, 0, 0, 0.2) 50%,
+			rgba(0, 0, 0, 0.6) 100%
+		);
+	}
 `;
 
 const PicSlidesImage = styled.img`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	object-fit: cover;
 `;
 
 const PicSlidesContent = styled.div`
-  position: relative;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  max-width: 1600px;
-  width: calc(100%-100px);
-  color: #fff;
+	position: relative;
+	z-index: 10;
+	display: flex;
+	flex-direction: column;
+	max-width: 1600px;
+	width: calc(100%-100px);
+	color: #fff;
 
-  h1 {
-    font-size: clamp(1rem, 8vw, 2rem);
-    font-weight: 400;
-    // text-tansform: uppercase;
-    text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
-    text-align: left;
-    margin-bottom: 0.8rem;
-  }
+	h1 {
+		font-size: clamp(1rem, 8vw, 2rem);
+		font-weight: 400;
+		// text-tansform: uppercase;
+		text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+		text-align: left;
+		margin-bottom: 0.8rem;
+	}
 
-  p {
-    margin-bottom: 1.2rem;
-    text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
-  }
+	p {
+		margin-bottom: 1.2rem;
+		text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+	}
 `;
 
 const Arrow = styled(IoMdArrowRoundForward)``;
 
 const SliderButtons = styled.div`
-  position: absolute;
-  bottom: 50px;
-  right: 50px;
-  display: flex;
-  z-index: 10;
+	position: absolute;
+	bottom: 50px;
+	right: 50px;
+	display: flex;
+	z-index: 10;
 `;
 
 const arrowButtons = css`
-  width: 50% ; //50px;
-  height: 50%; //50px;
-  color: #fff;
-  cursor: pointer;
-  background: #000d1a;
-  border-radius: 50px;
-  padding: 10px;
-  margin-right: 1rem;
-  user-select: none;
-  transition: 0.3s;
+	width: 50px;
+	height: 50px;
+	color: #fff;
+	cursor: pointer;
+	background: #000d1a;
+	border-radius: 50px;
+	padding: 10px;
+	margin-right: 1rem;
+	user-select: none;
+	transition: 0.3s;
 
-  &:hover {
-    background: #cd853f;
-    transform: scale(1.05);
-  }
+	&:hover {
+		background: #cd853f;
+		transform: scale(1.05);
+	}
 `;
 
 const PrevArrow = styled(IoArrowBack)`
-  ${arrowButtons}
+	${arrowButtons}
 `;
 
 const NextArrow = styled(IoArrowForward)`
-  ${arrowButtons}
+	${arrowButtons}
 `;
 
 const PicSlides = ({ slides }) => {
-  const [current, setCurrent] = useState(0);
-  const length = slides.length;
-  const timeout = useRef(null);
+	const [current, setCurrent] = useState(0);
+	const length = slides.length;
+	const timeout = useRef(null);
 
-  useEffect(() => {
-    const nextSlide = () => {
-      setCurrent((current) => (current === length - 1 ? 0 : current + 1));
-    };
-    timeout.current = setTimeout(nextSlide, 5000);
+	useEffect(() => {
+		const nextSlide = () => {
+			setCurrent(current => (current === length - 1 ? 0 : current + 1));
+		};
+		timeout.current = setTimeout(nextSlide, 5000);
 
-    return function () {
-      if (timeout.current) {
-        clearTimeout(timeout.current);
-      }
-    };
-  }, [current, length]);
+		return function () {
+			if (timeout.current) {
+				clearTimeout(timeout.current);
+			}
+		};
+	}, [current, length]);
 
-  const nextSlide = () => {
-    setCurrent(current === length - 1 ? 0 : current + 1);
-  };
-  const prevSlide = () => {
-    setCurrent(current === 0 ? length - 1 : current - 1);
-  };
+	const nextSlide = () => {
+		setCurrent(current === length - 1 ? 0 : current + 1);
+	};
+	const prevSlide = () => {
+		setCurrent(current === 0 ? length - 1 : current - 1);
+	};
 
-  if (!Array.isArray(slides) || slides.length <= 0) {
-    return null;
-  }
+	if (!Array.isArray(slides) || slides.length <= 0) {
+		return null;
+	}
 
-  return (
-    <PicSlidesSection>
-      <PicSlidesWrapper>
-        {slides.map((slide, index) => {
-          return (
-            <PicSlidesSlide key={index}>
-              {index === current && (
-                <PicSlidesSlider>
-                  <PicSlidesImage src={slide.image} alt={slide.alt} />
-                  <PicSlidesContent>
-                    <h1>{slide.title}</h1>
-                    <p style={{ color:'white', fontWeight: 'bold'}}>{slide.sub}</p>
-                   <Button variant="contained" color="secondary" href={slide.path} style={{maxWidth: '300px', maxHeight: '30px', minWidth: '30px', minHeight: '30px',
-                 margin: '0 auto', display: "flex"}}>
-                    {slide.label}
-                    <Arrow />
-                  </Button>
-                  </PicSlidesContent>
-                </PicSlidesSlider>
-              )}
-            </PicSlidesSlide>
-          );
-        })}
-        <SliderButtons>
-          <PrevArrow onClick={prevSlide} />
-          <NextArrow onClick={nextSlide} />
-        </SliderButtons>
-      </PicSlidesWrapper>
-    </PicSlidesSection>
-  );
+	return (
+		<PicSlidesSection>
+			<PicSlidesWrapper>
+				{slides.map((slide, index) => {
+					return (
+						<PicSlidesSlide key={index}>
+							{index === current && (
+								<PicSlidesSlider>
+									<PicSlidesImage
+										src={slide.image}
+										alt={slide.alt}
+									/>
+									<PicSlidesContent>
+										<h1>{slide.title}</h1>
+										<p
+											style={{
+												color: "white",
+												fontWeight: "bold",
+											}}
+										>
+											{slide.sub}
+										</p>
+										<Button
+											variant="contained"
+											color="secondary"
+											href={slide.path}
+											style={{
+												maxWidth: "300px",
+												maxHeight: "40px",
+												minWidth: "40px",
+												minHeight: "40px",
+												margin: "0 auto",
+												display: "flex",
+											}}
+										>
+											{slide.label}
+											<Arrow />
+										</Button>
+									</PicSlidesContent>
+								</PicSlidesSlider>
+							)}
+						</PicSlidesSlide>
+					);
+				})}
+				<SliderButtons>
+					<PrevArrow onClick={prevSlide} />
+					<NextArrow onClick={nextSlide} />
+				</SliderButtons>
+			</PicSlidesWrapper>
+		</PicSlidesSection>
+	);
 };
 export default PicSlides;
 

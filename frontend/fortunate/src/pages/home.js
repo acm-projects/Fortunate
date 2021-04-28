@@ -1,6 +1,7 @@
 import { BrowserRouter as Link } from "react-router-dom";
 import Buffer from "../components/Buffer";
 import TopButton from "../components/TopButton";
+
 // Material UI
 import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
@@ -8,33 +9,79 @@ import Grid from "@material-ui/core/Grid";
 import AppIcon from "../images/Fortunate_Logo.svg";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+
 import PicSlides from "../components/PicSlides";
 import { PicData } from "../components/PicData.js";
-import { Infodata} from "../components/Homestuff/Infodata";
+import { Infodata } from "../components/Homestuff/Infodata";
 import Info from "../components/Homestuff/Info";
 
 import Cards from "../components/Homestuff/Cards";
 
 const useStyles = makeStyles({
-	root: {borderLeft:0, borderTop:5, borderBottom:5, borderRight:0,  borderColor: "#70A851", square:true, variant:"outlined" }
+	root: {
+		borderLeft: 0,
+		borderTop: 5,
+		borderBottom: 5,
+		borderRight: 0,
+		borderColor: "#70A851",
+		square: true,
+		variant: "outlined",
+	},
 });
 
 const Home = () => {
 	const classes = useStyles();
 	return (
 		<home>
+			{/* Page Title */}
+			<Grid
+				container
+				alignItems="center"
+				maxHeight="60px"
+				className="centered"
+			>
+				<Typography
+					className={classes.title}
+					variant="h6"
+					noWrap
+					alignItems="center"
+				>
+					<h1 className="homeHeader">Welcome to Fortunate</h1>
+				</Typography>
+				<img
+					className="appIconSmall"
+					src={AppIcon}
+					alt="coin"
+					width="60"
+					height="60"
+				/>
+				<Typography
+					className={classes.title}
+					variant="h6"
+					noWrap
+					alignItems="center"
+				>
+					<h1 className="homeHeader"> !</h1>
+				</Typography>
+			</Grid>
 
-		<PicSlides slides={PicData} />
+			{/* Slideshow */}
+			<PicSlides slides={PicData} />
 
+			{/* Page Sections */}
 			<Grid container className="home">
-				<Grid item xs={12}>
+				{/* <Grid item xs={12}>
 					<Box width="100%">
 						<Box paddingTop={4}>
 							<Paper elevation={20} className={classes.root}>
-								<Box paddingTop={1} borderTop={3} borderColor="#70A851">
-
+								<Box
+									paddingTop={1}
+									borderTop={3}
+									borderColor="#70A851"
+								>
 									<>
-									<Info {...Infodata} />
+										<Info {...Infodata} />
 									</>
 
 									<Buffer />
@@ -42,25 +89,33 @@ const Home = () => {
 							</Paper>
 						</Box>
 					</Box>
-				</Grid>
+				</Grid> */}
 
 				<Grid item xs={12}>
 					<Box width="100%">
 						<Paper elevation={20}>
-							<Box paddingTop={1} borderTop={3} borderColor="#70A851">
-								<Buffer />
+							<Box
+								paddingTop={1}
+								borderTop={3}
+								borderColor="#70A851"
+							>
+								{/* <Buffer /> */}
 
-								<Cards/>
+								<Cards />
 
-								<Buffer />
+								{/* <Buffer /> */}
 							</Box>
 						</Paper>
 					</Box>
 				</Grid>
-				<Grid>
+				{/* <Grid>
 					<Box Box width="100%">
 						<Paper elevation={20}>
-							<Box paddingTop={1} borderTop={3} borderColor="#70A851">
+							<Box
+								paddingTop={1}
+								borderTop={3}
+								borderColor="#70A851"
+							>
 								<div id="lessons">
 									<h2>Lessons</h2>
 								</div>
@@ -100,7 +155,11 @@ const Home = () => {
 				<Grid>
 					<Box Box width="100%">
 						<Paper elevation={20}>
-							<Box paddingTop={1} borderTop={3} borderColor="#70A851">
+							<Box
+								paddingTop={1}
+								borderTop={3}
+								borderColor="#70A851"
+							>
 								<div id="VM">
 									<h2>Virtual Market</h2>
 								</div>
@@ -120,9 +179,9 @@ const Home = () => {
 										inceptos himenaeos. Curabitur sodales
 										ligula in libero. Sed dignissim lacinia
 										nunc. Stock look up page{" "}
-											<a href="/vmpage" target="_blank">
-												page
-											</a>
+										<a href="/vmpage" target="_blank">
+											page
+										</a>
 									</p>
 								</div>
 								<Buffer />
@@ -142,7 +201,11 @@ const Home = () => {
 				<Grid>
 					<Box Box width="100%">
 						<Paper elevation={20}>
-							<Box paddingTop={1} borderTop={3} borderColor="#70A851">
+							<Box
+								paddingTop={1}
+								borderTop={3}
+								borderColor="#70A851"
+							>
 								<h2>
 									No Investment Advice / Investment Risks
 									Disclaimer
@@ -170,7 +233,7 @@ const Home = () => {
 							</Box>
 						</Paper>
 					</Box>
-				</Grid>
+				</Grid> */}
 			</Grid>
 		</home>
 	);

@@ -226,7 +226,7 @@ export default function Header() {
 							<Grid container justify="space-around">
 								<Grid item>
 									<Link to="/">
-										<Button text="About" />
+										<Button text="Home" />
 									</Link>
 								</Grid>
 								<Grid item>
@@ -256,7 +256,6 @@ export default function Header() {
 						</Grid>
 
 						<Grid item>
-							
 							<IconButton
 								edge="end"
 								aria-label="account of current user"

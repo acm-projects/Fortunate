@@ -110,7 +110,7 @@ class signup extends Component {
 					title="introBusinessEtEconomy"
 					src="https://www.youtube.com/embed/nJ4O-ARAlRM?autoplay=1&mute=1&disablekb=1&modestbranding=1&rel=0&playlist=nJ4O-ARAlRM&loop=1&controls=0"
 				/>
-				<Grid container className={classes.form + " centered"}>
+				<Grid container className={classes.form + " centered fullPage"}>
 					<Grid item sm />
 					<Grid item sm>
 						<img

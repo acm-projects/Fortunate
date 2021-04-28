@@ -115,6 +115,24 @@ class Introduction extends Component {
 				</p>
 
 				<div className="buffer" />
+				<a href="/">
+					<button
+						style={{
+							color: "#2d313a",
+							backgroundColor: "gold",
+							fontWeight: "bold",
+							fontSize: "1.3em",
+							display: "block",
+							marginLeft: "auto",
+							marginRight: "auto",
+						}}
+						className="btn"
+						justifySelf="center"
+					>
+						{"Back Home"}
+					</button>
+				</a>
+				<div className="buffer" />
 			</div>
 		);
 	}

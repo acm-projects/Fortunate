@@ -22,7 +22,7 @@ body {
 }*/
 html {
 	/* background-color: #2d313a; */
-	overflow-x:hidden;
+	overflow-x: hidden;
 }
 
 body {
@@ -51,7 +51,7 @@ body {
 	position: absolute;
 	bottom: 1;
 	width: 100%;
-	background-color: #3c4049;
+	background-color: #3a3a3a;
 	padding-top: 5px;
 }
 
@@ -59,6 +59,9 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.fullPage {
 	height: 80vh;
 }
 
@@ -83,6 +86,16 @@ body {
 	font-family: "Spartan", sans-serif;
 	text-shadow: 3px 3px 1px black;
 	color: gold;
+}
+
+.homeHeader {
+	font-size: 55px;
+	margin: 0;
+	padding-top: 20px;
+	font-family: "Spartan", sans-serif;
+	text-shadow: 3px 3px 1px black;
+	color: gold;
+	justify-content: center;
 }
 
 .content {

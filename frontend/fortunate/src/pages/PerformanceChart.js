@@ -13,7 +13,7 @@ class PerformanceChart extends Component {
 		super();
 
 		this.state = {
-			labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+			labels: ["4/22", "4/23", "4/26", "4/27", "4/28"],
 			datasets: [
 				{
 					label: "Value",

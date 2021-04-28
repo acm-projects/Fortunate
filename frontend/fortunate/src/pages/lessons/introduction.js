@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./lessons.css";
 
+import Button from "../../components/Button";
+
 class Introduction extends Component {
 	render() {
 		return (
@@ -172,6 +174,24 @@ class Introduction extends Component {
 					profit.
 				</p>
 
+				<div className="buffer" />
+				<a href="/learn/trading">
+					<button
+						style={{
+							color: "#2d313a",
+							backgroundColor: "gold",
+							fontWeight: "bold",
+							fontSize: "1.3em",
+							display: "block",
+							marginLeft: "auto",
+							marginRight: "auto",
+						}}
+						className="btn"
+						justifySelf="center"
+					>
+						{"Next: Trading"}
+					</button>
+				</a>
 				<div className="buffer" />
 			</div>
 		);
