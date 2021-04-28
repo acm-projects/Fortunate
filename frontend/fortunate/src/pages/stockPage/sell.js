@@ -28,31 +28,33 @@ export class Sell extends Component {
   }
 
   handleTickerChange = (event) => {
-    this.setState({
-      symbol : event.target.value
-    });
+    var ticker = event.target.value;
+    if(this.timeout) clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      this.setState({
+        symbol : ticker
+      });
+      this.props.callbackFromParent(ticker);
+    }, 1000);
   }
 
   render() {
     return (
       <div className="base-container" ref={this.props.containerRef}>
-        <div className="header">Sell Stocks</div>
         <div className="content">
-        <div className="form">
+          <div className="form">
             <div className="form-group">
               <label>
-                Quantity: <input type="text" name="ticker" placeholder="Ex: 1, 2, 3" onChange={this.handleTickerChange.bind(this)}/>
+                Symbol:{"  "} <input type="text" name="ticker" placeholder="Ex: GME" onChange={this.handleTickerChange.bind(this)}/>
               </label>
             </div>
             <div className="form-group">
               <label>
-                Amount: <input type="text" name="amount" placeholder="$0.00" onChange={this.handleQuantChange.bind(this)}/>
+                Amount: <input type="text" name="amount" placeholder="0" onChange={this.handleQuantChange.bind(this)}/>
               </label>
             </div>
             <hr class="horizontal-line"></hr>
           </div>
-        </div>
-        <div className="footer">
           <button type="button" className="btn" onClick={this.tradeStock.bind(this)}>
             Sell Stock
           </button>

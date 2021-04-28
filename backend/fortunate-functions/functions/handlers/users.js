@@ -374,15 +374,17 @@ exports.dayValue = async (req, res) => {
  *      symbol : "{symbol}"
  * }
  */
-exports.getQuoteInfo = (req, res) => {
-    const doc = db.collection('ticker').doc(req.body.symbol).get(); // get the document ref from database
-
-    if ( !doc.exists ) { // if document DOES NOT exist
-        return res.status(400).json({ error: `${req.body.symbol} is not supported`});
-    }
-    else { // if document DOES exist
-        return res.status(200).json(doc.data())
-    }
+exports.getQuoteInfo = async (req, res) => {
+    console.log('SYMBOL: ' + req.body.symbol);
+    db.collection('tickers').doc(req.body.symbol).get().then((data) => {
+        if(!data.exists) {
+            return res.status(400).json({ error: `${req.body.symbol} is not supported`});
+        } else { // if document DOES exist
+            return res.status(200).json(data.data());
+        }
+    }).catch((err) => {
+        console.error(err);
+    }); // get the document ref from database
 }
 
 // TODO: Transction hisory

@@ -3,8 +3,9 @@
 .bigcontainer {
   text-align: center;
   // display: flex;
-  position: relative;
-  right:-72%;
+  position: absolute;
+  right:10%;
+  top:10%;
   justify-content: center;
   align-items: center;
   font-family: "Open Sans", sans-serif;
@@ -26,15 +27,11 @@
 }
 */
 .LineGraph {
-  // display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 5%; // 5px;
-  position: absolute;
-	background-color: black;
-  width: 60%;
-  height: 30em;
+  margin-top: 1vw;
+  margin-left: 1vw;
+  width: 50vw;
 }
+
 // Main Container
 .buy {
   width: 17em;

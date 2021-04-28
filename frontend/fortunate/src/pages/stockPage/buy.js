@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-export class Buy extends Component {
+export class Buy extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = { type: 'buy', symbol : '', quantity : 0 };
 
     // this.currencyHandleChange = this.currencyHandleChange.bind(this);
@@ -27,32 +26,35 @@ export class Buy extends Component {
       quantity : q
     });
   }
+
   handleTickerChange = (event) => {
-    this.setState({
-      symbol : event.target.value
-    });
+    var ticker = event.target.value;
+    if(this.timeout) clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      this.setState({
+        symbol : ticker
+      });
+      this.props.callbackFromParent(ticker);
+    }, 1000);
   }
 //line 19 <div className="header">Buy Stocks</div>
   render() {
     return (
       <div className="base-container" ref={this.props.containerRef}>
-      <div className="header">Buy Stocks</div>
         <div className="content">
           <div className="form">
             <div className="form-group">
               <label>
-                Shares:{"  "} <input type="text" name="# of stocks" placeholder="Ex: 1, 2, 3" onChange={this.handleTickerChange.bind(this)}/>
+                Symbol:{"  "} <input type="text" name="Ticker" placeholder="Ex: GME" onChange={this.handleTickerChange.bind(this)}/>
               </label>
             </div>
             <div className="form-group">
               <label>
-                Amount: <input type="text" name="amount" placeholder="$0.00" onChange={this.handleQuantChange.bind(this)}/>
+                Amount: <input type="text" name="amount" placeholder="0" onChange={this.handleQuantChange.bind(this)}/>
               </label>
             </div>
             <hr class="horizontal-line"></hr>
           </div>
-        </div>
-        <div className="footer">
           <button type="button" className="btn" onClick={this.tradeStock.bind(this)} >
             Buy Stock
           </button>

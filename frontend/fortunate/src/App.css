@@ -22,6 +22,7 @@ body {
 }*/
 html {
 	/* background-color: #2d313a; */
+	overflow-x:hidden;
 }
 
 body {

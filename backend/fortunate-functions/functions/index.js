@@ -35,6 +35,8 @@ app.post("/update-ticker", getOneTicker); // to manualy update one ticker
 
 app.post("/trade", FBAuth, trade);
 
+app.post("/stock", getQuoteInfo);
+
 app.get("/user", FBAuth, getAuthUser);
 app.get("/value", FBAuth, dayValue);
 app.get("/transactions", FBAuth, getTransactions);
