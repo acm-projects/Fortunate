@@ -144,7 +144,7 @@ async function getStockPrice(ticker) {
             console.log('Timestamp: ' + timestamp);
             
             // If the time is in the trading day
-            if (!(timestamp < data.timestamp[0] || timestamp > data.timestamp[389])) {
+            if (timestamp > data.timestamp[0] && timestamp < data.timestamp[367]) {
                 price = data.indicators.open[data.timestamp.indexOf(timestamp)];
                 console.log("price: " + price);
                 ret = price;
