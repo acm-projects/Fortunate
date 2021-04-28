@@ -3,6 +3,7 @@ import { Line, Pie } from "react-chartjs-2";
 //import PerformanceChart from "../components/PerformanceChart";
 import PerformanceChart from "./PerformanceChart";
 import HoldingsChart from "../components/HoldingsChart";
+import TransactionList from "./TransactionList"
 
 // Material UI
 import Box from "@material-ui/core/Box";
@@ -40,6 +41,7 @@ const Portfolio = () => {
 					>
 					<div style={{ paddingTop: 10 }}>Recent Trades</div>
 					</Box>
+					<TransactionList />
 				</Grid>
 			</Grid>
 		</div>
